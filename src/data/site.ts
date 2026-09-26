@@ -15,3 +15,14 @@ export const site = {
   /** Set to an imported image URL when the real portrait is supplied. */
   portrait: null as string | null,
 };
+
+/** RÉSUMÉ SECTION — edit copy here. PDF lives in public/documents/. */
+export const resume = {
+  label: "Résumé / Experience",
+  statement: ["15+ years in", "design & production"],
+  paragraph:
+    "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted image and video content.",
+  signals: ["Graphic design & prepress", "AI-assisted visual content", "MSc + BSc in design"],
+  pdf: "/documents/resume-Aleksandar-Tonev-Eng-A4.pdf",
+  downloadName: "Aleksandar-Tonev-Resume-EN.pdf",
+};
