@@ -69,15 +69,15 @@ export function ResumeSection() {
               href={resume.pdf}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Aleksandar Tonev’s résumé as a PDF in a new tab"
+              aria-label="Preview Aleksandar Tonev CV as PDF"
               className="resume-btn resume-btn-primary"
             >
-              View résumé <span aria-hidden="true" className="resume-arrow">↗</span>
+              View CV <span aria-hidden="true" className="resume-arrow">↗</span>
             </a>
             <a
               href={resume.pdf}
               download={resume.downloadName}
-              aria-label="Download Aleksandar Tonev’s résumé as a PDF"
+              aria-label="Download Aleksandar Tonev CV as PDF"
               className="resume-btn resume-btn-secondary"
             >
               Download PDF <span aria-hidden="true" className="resume-arrow">↓</span>
