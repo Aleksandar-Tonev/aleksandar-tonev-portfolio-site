@@ -68,10 +68,10 @@ export function Carousel({
         if (e.key === "ArrowRight") go(1);
         if (e.key === "ArrowLeft") go(-1);
       }}
-      onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+      onTouchStart={(e) => (touchX.current = e.touches[0]!.clientX)}
       onTouchEnd={(e) => {
         if (touchX.current === null) return;
-        const dx = e.changedTouches[0].clientX - touchX.current;
+        const dx = e.changedTouches[0]!.clientX - touchX.current;
         if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
         touchX.current = null;
       }}
