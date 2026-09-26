@@ -240,29 +240,29 @@
 .hero-flower-layer { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
 .hero-flower-fragment {
   position: absolute; height: auto; max-width: none; opacity: 0; pointer-events: none; user-select: none;
-  transform: translate3d(var(--enter-x, 0), var(--enter-y, 10px), 0) rotate(var(--resting-rotation, 0deg));
-  transition: opacity 280ms ease, transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: rotate(var(--active-rotation, 0deg));
+  transition: opacity 120ms ease-in-out;
   mask-repeat: no-repeat; mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat; -webkit-mask-size: 100% 100%;
 }
-.hero-flower-fragment.is-active {
-  opacity: 0.2;
-  transform: translate3d(0, 0, 0) rotate(var(--active-rotation, 0deg));
-  transition: opacity 360ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-}
+.hero-flower-fragment.is-active { opacity: 0.2; }
 .hero-flower-fragment--fade-left { mask-image: linear-gradient(to right, transparent 0%, black 42%, black 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 42%, black 100%); }
 .hero-flower-fragment--fade-right { mask-image: linear-gradient(to left, transparent 0%, black 42%, black 100%); -webkit-mask-image: linear-gradient(to left, transparent 0%, black 42%, black 100%); }
 .hero-flower-fragment--fade-top { mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 100%); }
 .hero-flower-fragment--fade-bottom { mask-image: linear-gradient(to top, transparent 0%, black 42%, black 100%); -webkit-mask-image: linear-gradient(to top, transparent 0%, black 42%, black 100%); }
-@media (hover: none), (pointer: coarse) {
-  .hero-flower-fragment { display: none; transition: none; }
-  .hero-flower-fragment.is-mobile { display: block; opacity: 0.2; transform: rotate(var(--active-rotation, 0deg)); }
+@media (max-width: 767px), (hover: none), (pointer: coarse) {
   .hero-flower-fragment[src$="fragment-5.svg"] { width: 16rem !important; }
   .hero-flower-fragment[src$="fragment-2.svg"] { width: 7rem !important; }
 }
+/* Résumé statement clipped reveal */
+.resume-clip { display: inline-block; overflow: hidden; vertical-align: bottom; padding-block: 0.08em; margin-block: -0.08em; }
+.resume-rv { display: inline-block; }
+@keyframes resume-rv-a { from { opacity: 0; transform: translateY(var(--rv-a, 20px)); } to { opacity: 1; transform: none; } }
+@keyframes resume-rv-b { from { opacity: 0; transform: translateY(var(--rv-b, 12px)); } to { opacity: 1; transform: none; } }
+.resume[data-in="false"] .resume-rv { opacity: 0; }
+.resume[data-in="true"] .resume-rv-a { animation: resume-rv-a 600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.resume[data-in="true"] .resume-rv-b { animation: resume-rv-b 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both; }
+@media (max-width: 767px) { .resume { --rv-a: 14px; --rv-b: 8px; } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-flower-fragment, .hero-flower-fragment.is-active {
-    transform: none;
-    transition: opacity 200ms ease !important;
-  }
+  .resume[data-in] .resume-rv { opacity: 1; animation: none; transform: none; }
 }
