@@ -1,24 +1,175 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback, useRef, useState } from "react";
+import { projectGroups, type Project } from "@/data/projects";
+import { site } from "@/data/site";
+import { Carousel, type Slot } from "@/components/portfolio/Carousel";
+import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content";
+const DESC = "Portfolio of Aleksandar Tonev: graphic design and prepress with production discipline, plus interior/spatial work and AI visual content.";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+// Carousel A: three stable editorial slots with fixed offsets.
+const slotsA: Slot[] = [
+  { ratio: "4/5", offset: "0rem", span: "col-span-12 md:col-span-6 lg:col-span-5" },
+  { ratio: "1/1", offset: "6rem", span: "col-span-12 md:col-span-6 lg:col-span-4", from: "md" },
+  { ratio: "3/4", offset: "2.5rem", span: "col-span-12 lg:col-span-3", from: "lg" },
+];
+const slotsB: Slot[] = [
+  { ratio: "3/2", offset: "0rem", span: "col-span-12 md:col-span-7" },
+  { ratio: "4/5", offset: "4rem", span: "col-span-12 md:col-span-5", from: "md" },
+];
+const slotsC: Slot[] = [
+  { ratio: "4/5", offset: "3rem", span: "col-span-12 md:col-span-5" },
+  { ratio: "16/10", offset: "0rem", span: "col-span-12 md:col-span-7", from: "md" },
+];
+const slotsD: Slot[] = [{ ratio: "21/9", offset: "0rem", span: "col-span-12" }];
+
+function Home() {
+  const [open, setOpen] = useState<Project | null>(null);
+  const trigger = useRef<HTMLElement | null>(null);
+  const [menu, setMenu] = useState(false);
+
+  const openProject = useCallback((p: Project, el: HTMLElement) => {
+    trigger.current = el;
+    setOpen(p);
+  }, []);
+  const close = useCallback(() => {
+    setOpen(null);
+    requestAnimationFrame(() => trigger.current?.focus());
+  }, []);
+
+  const links = [["Work", "#work"], ["About", "#about"], ["Contact", "#contact"]] as const;
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <div inert={open ? true : undefined}>
+        <a href="#work" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:p-2">
+          Skip to work
+        </a>
+        <header className="sticky top-0 z-40 border-b border-foreground/15 bg-background">
+          <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 md:px-10">
+            <a href="#top" className="font-display text-base font-bold tracking-wide">ALEKSANDAR TONEV</a>
+            <nav aria-label="Main" className="hidden gap-8 md:flex">
+              {links.map(([l, h]) => (
+                <a key={h} href={h} className={`link font-mono text-xs uppercase tracking-wider ${l === "Contact" ? "text-accent" : ""}`}>{l}</a>
+              ))}
+            </nav>
+            <button
+              type="button"
+              className="nav-btn md:hidden"
+              aria-expanded={menu}
+              aria-controls="mnav"
+              onClick={() => setMenu((m) => !m)}
+            >
+              <span className="font-mono text-xs uppercase">{menu ? "Close" : "Menu"}</span>
+            </button>
+          </div>
+          {menu && (
+            <nav id="mnav" aria-label="Mobile" className="border-t border-foreground/15 px-5 pb-4 md:hidden">
+              {links.map(([l, h]) => (
+                <a key={h} href={h} onClick={() => setMenu(false)} className="block border-b border-foreground/10 py-4 font-display text-2xl uppercase">
+                  {l}
+                </a>
+              ))}
+            </nav>
+          )}
+        </header>
+
+        <main id="top" className="mx-auto max-w-[1440px] px-5 md:px-10">
+          {/* Hero */}
+          <section className="grid grid-cols-12 gap-5 pb-20 pt-16 md:pb-28 md:pt-24">
+            <p className="col-span-12 font-mono text-xs uppercase tracking-wider md:col-span-3 md:pt-4">
+              <span className="text-accent">■</span> {site.descriptor}
+            </p>
+            <h1 className="col-span-12 font-display text-[clamp(3rem,9vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-tight md:col-span-9">
+              {site.headline[0]}
+              <br />
+              <span className="text-muted-foreground">{site.headline[1]}</span>
+            </h1>
+            <div className="col-span-12 mt-8 md:col-span-5 md:col-start-4 lg:col-span-4 lg:col-start-4">
+              <p className="text-base leading-relaxed">{site.intro}</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href="#work" className="btn-primary">Explore selected work</a>
+                <a href="#contact" className="btn-ghost">Get in touch</a>
+              </div>
+            </div>
+          </section>
+
+          {/* Work */}
+          <section id="work" aria-labelledby="work-h" className="scroll-mt-16 pb-24">
+            <div className="mb-12 flex items-baseline justify-between">
+              <h2 id="work-h" className="font-display text-4xl uppercase md:text-6xl">Selected work</h2>
+              <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Placeholder content</p>
+            </div>
+            <div className="space-y-24 md:space-y-32">
+              <Carousel id="A" label="Group A" projects={projectGroups.A} slots={slotsA} onOpen={openProject} />
+              <div className="md:ml-[8.33%]">
+                <Carousel id="B" label="Group B" projects={projectGroups.B} slots={slotsB} onOpen={openProject} />
+              </div>
+              <div className="md:mr-[16.66%]">
+                <Carousel id="C" label="Group C" projects={projectGroups.C} slots={slotsC} onOpen={openProject} />
+              </div>
+              <div className="md:ml-[25%]">
+                <Carousel id="D" label="Group D" projects={projectGroups.D} slots={slotsD} onOpen={openProject} />
+              </div>
+            </div>
+          </section>
+
+          {/* About */}
+          <section id="about" aria-labelledby="about-h" className="grid scroll-mt-16 grid-cols-12 gap-5 border-t border-foreground py-20 md:py-28">
+            <h2 id="about-h" className="col-span-12 font-display text-4xl uppercase md:col-span-4 md:text-6xl">About</h2>
+            <div className="col-span-12 md:col-span-4">
+              {site.portrait ? (
+                <img src={site.portrait} alt="Portrait of Aleksandar Tonev" className="aspect-[4/5] w-full object-cover" />
+              ) : (
+                <div className="flex aspect-[4/5] w-full items-end border border-dashed border-muted-foreground p-4 font-mono text-[11px] uppercase tracking-wider text-foreground/70">
+                  Reserved for portrait — to be supplied
+                </div>
+              )}
+            </div>
+            <div className="col-span-12 space-y-5 text-base leading-relaxed md:col-span-4">
+              {site.about.map((t) => <p key={t}>{t}</p>)}
+            </div>
+          </section>
+        </main>
+
+        {/* Contact */}
+        <footer id="contact" className="scroll-mt-16 bg-foreground text-background">
+          <div className="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
+            <p className="font-mono text-xs uppercase tracking-wider opacity-70">Contact</p>
+            <h2 className="mt-4 max-w-4xl font-display text-4xl uppercase leading-none md:text-7xl">
+              Have a project or a role in mind? Let's talk.
+            </h2>
+            <a href={`mailto:${site.email}`} className="link-inverse mt-10 inline-block break-all font-display text-xl md:text-3xl">
+              {site.email}
+            </a>
+            <div className="mt-6">
+              <a href={site.linkedin} target="_blank" rel="noreferrer" className="link-inverse font-mono text-xs uppercase tracking-wider">
+                LinkedIn ↗
+              </a>
+            </div>
+            <div className="mt-20 flex justify-between border-t border-background/20 pt-5 font-mono text-[11px] uppercase tracking-wider opacity-70">
+              <span>{site.name}</span>
+              <span>© {new Date().getFullYear()}</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+      {open && <ProjectDialog project={open} onClose={close} />}
+    </>
   );
 }
