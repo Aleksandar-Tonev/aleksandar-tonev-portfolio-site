@@ -62,17 +62,28 @@ const ph = (
   placeholder: true,
 });
 
+/** Attach a supplied image + title; descriptions stay placeholder until supplied. */
+const withImage = (p: Project, title: string, src: string): Project => {
+  const portrait = p.aspectRatio === "9:16";
+  return {
+    ...p,
+    title,
+    alt: title,
+    images: [{ src, width: portrait ? 900 : 1600, height: portrait ? 1600 : 900 }],
+  };
+};
+
 export const projects: Project[] = [
-  ph("a1", "01", "A", "9:16", "Graphic Design"),
-  ph("a2", "02", "A", "16:9", "Prepress"),
-  ph("a3", "03", "A", "9:16", "AI Visual Content"),
-  ph("a4", "04", "A", "16:9", "Interior / Spatial"),
-  ph("b1", "05", "B", "16:9", "Prepress"),
-  ph("b2", "06", "B", "9:16", "Graphic Design"),
-  ph("b3", "07", "B", "16:9", "AI Visual Content"),
-  ph("c1", "08", "C", "9:16", "Interior / Spatial"),
-  ph("c2", "09", "C", "16:9", "Graphic Design"),
-  ph("c3", "10", "C", "9:16", "Prepress"),
+  withImage(ph("a1", "01", "A", "9:16", "Graphic Design"), "Hair salon make-up poster", w1.url),
+  withImage(ph("a2", "02", "A", "16:9", "Prepress"), "Davines billboard", w2.url),
+  withImage(ph("a3", "03", "A", "9:16", "Graphic Design"), "Botyo Bukov book cover", w3.url),
+  withImage(ph("a4", "04", "A", "16:9", "Prepress"), "Aspen Invest calendar header", w4.url),
+  withImage(ph("b1", "05", "B", "16:9", "Prepress"), "Bulgarian National Audit Office calendar header", w5.url),
+  withImage(ph("b2", "06", "B", "9:16", "Graphic Design"), "Dream catcher colour study", w6.url),
+  withImage(ph("b3", "07", "B", "16:9", "Graphic Design"), "Geometric shapes drawing", w7.url),
+  withImage(ph("c1", "08", "C", "9:16", "Graphic Design"), "University of Forestry flyer 2018", w8.url),
+  withImage(ph("c2", "09", "C", "16:9", "Graphic Design"), "Logo mock-up", w9.url),
+  withImage(ph("c3", "10", "C", "9:16", "Graphic Design"), "Business card", w10.url),
   ph("d1", "11", "D", "16:9", "AI Visual Content"),
   ph("d2", "12", "D", "16:9", "Graphic Design"),
   ph("d3", "13", "D", "9:16", "Prepress"),
