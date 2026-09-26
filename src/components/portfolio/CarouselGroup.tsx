@@ -72,6 +72,8 @@ export function CarouselGroup({
   const headingId = `carousel-${id.toLowerCase()}-heading`;
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  // Keep the window inside bounds when the number of visible cards changes.
+  useEffect(() => { setIndex((i) => Math.min(i, Math.max(0, n - shown))); }, [shown, n]);
 
   const go = (d: "next" | "previous") => {
     if (isAnimating || !canNavigate) return;
