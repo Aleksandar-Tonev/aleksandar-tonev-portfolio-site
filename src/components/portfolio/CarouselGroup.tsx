@@ -66,15 +66,18 @@ export function CarouselGroup({
 
   const maxSlots = Math.min(visibleCount, slots.length, n);
   const shown = Math.min(maxSlots, isLg ? 3 : isMd ? 2 : 1);
-  const canNavigate = n > 1;
+  const canNavigate = n > shown;
+  const atStart = currentIndex <= 0;
+  const atEnd = currentIndex + shown >= n;
   const headingId = `carousel-${id.toLowerCase()}-heading`;
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   const go = (d: "next" | "previous") => {
     if (isAnimating || !canNavigate) return;
+    if (d === "next" ? atEnd : atStart) return; // finite: no wrap
     const step = d === "next" ? 1 : -1;
-    const apply = () => setIndex((i) => (i + step + n) % n);
+    const apply = () => setIndex((i) => Math.min(Math.max(i + step, 0), n - shown));
     if (reduced) return apply();
     setDirection(d);
     setPhase("out");
@@ -98,7 +101,7 @@ export function CarouselGroup({
         : "";
 
   const first = currentIndex + 1;
-  const last = ((currentIndex + shown - 1) % n) + 1;
+  const last = Math.min(currentIndex + shown, n);
   const range = shown > 1 ? `${pad(first)} — ${pad(last)}` : pad(first);
 
   return (
@@ -126,7 +129,7 @@ export function CarouselGroup({
         <h3 id={headingId} tabIndex={-1} className="font-mono text-xs uppercase tracking-wider outline-none focus-visible:outline-2 focus-visible:outline-accent">
           <span className="text-accent">{id}</span> — {label}
         </h3>
-        <p className="font-mono text-xs tabular-nums" aria-hidden>
+        <p className="hidden font-mono text-xs tabular-nums lg:block" aria-hidden>
           {range} / {pad(n)}
         </p>
         <p className="sr-only" aria-live="polite">
@@ -202,8 +205,8 @@ function ArrowBtn({ dir, disabled, onClick, className = "" }: { dir: "next" | "p
       aria-label={dir === "next" ? "Next project" : "Previous project"}
       className={`carousel-arrow ${className}`}
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden style={dir === "previous" ? { rotate: "180deg" } : undefined}>
-        <path d="M3 12h17M14 6l6 6-6 6" strokeLinecap="square" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden >
+        <path d={dir === "next" ? "M3 12h17M14 6l6 6-6 6" : "M21 12H4M10 6l-6 6 6 6"} strokeLinecap="square" />
       </svg>
     </button>
   );
