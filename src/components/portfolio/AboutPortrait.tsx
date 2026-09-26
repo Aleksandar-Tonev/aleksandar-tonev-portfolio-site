@@ -4,8 +4,7 @@ import col from "@/assets/about-color.webp.asset.json";
 
 /** Diagonal boundary rising from lower-left to upper-right; colour sits below it. y = boundary height at centre. */
 const band = (y: number) => `polygon(0% 100%, 100% 100%, 100% ${y - 10}%, 0% ${y + 10}%)`;
-const REST = band(75); // 25% above the bottom edge
-const HINT = band(50); // another 25% upward
+const HIDDEN = band(115); // fully duotone
 const FULL = band(-20);
 
 export function AboutPortrait() {
@@ -24,8 +23,8 @@ export function AboutPortrait() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     running.current = true;
     timers.current.push(window.setTimeout(() => { if (!touched.current) setHint(true); }, 350));
-    timers.current.push(window.setTimeout(() => setHint(false), 350 + 600 + 200));
-    timers.current.push(window.setTimeout(() => { running.current = false; }, 350 + 600 + 200 + 600));
+    timers.current.push(window.setTimeout(() => setHint(false), 1350));
+    timers.current.push(window.setTimeout(() => { running.current = false; }, 2350));
   }, []);
 
   useEffect(() => {
@@ -45,7 +44,8 @@ export function AboutPortrait() {
   }, [runHint]);
 
   const active = locked || hover;
-  const path = active ? FULL : hint ? HINT : REST;
+  const path = active ? FULL : HIDDEN;
+  const lineY = active ? "-95%" : hint ? "-50%" : "0%";
   const stop = () => { touched.current = true; setHint(false); };
 
   return (
@@ -68,14 +68,23 @@ export function AboutPortrait() {
               alt=""
               aria-hidden="true"
               className="portrait-color absolute inset-0 h-full w-full object-cover object-center"
-              style={{ clipPath: path, transitionDuration: hint || running.current ? "600ms" : "550ms" }}
+              style={{ clipPath: path }}
               data-on={active}
             />
           )}
         </>
       )}
+      <span
+        aria-hidden="true"
+        className="portrait-line pointer-events-none absolute inset-0"
+        style={{ transform: `translateY(${lineY})`, transitionDuration: hint || running.current ? "1000ms" : "550ms" }}
+      >
+        <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <line x1="0" y1="85" x2="100" y2="65" stroke="white" strokeOpacity="0.85" strokeWidth="1" vectorEffect="non-scaling-stroke" shapeRendering="crispEdges" />
+        </svg>
+      </span>
       <span className="portrait-ctl absolute bottom-3 right-3 flex min-h-12 min-w-12 items-center gap-2 px-3 font-mono text-[11px] uppercase tracking-wider">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.2" /><path d="M8 1a7 7 0 0 1 0 14z" fill="currentColor" /></svg>
+        {!active && <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" strokeWidth="1.2" /><path d="M8 1a7 7 0 0 1 0 14z" fill="currentColor" /></svg>}
         {active ? "Full color" : "Reveal"}
       </span>
     </button>
