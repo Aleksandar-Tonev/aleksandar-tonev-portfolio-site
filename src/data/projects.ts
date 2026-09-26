@@ -22,7 +22,7 @@ import w8 from "@/assets/work/work-8.webp.asset.json";
 import w9 from "@/assets/work/work-9.webp.asset.json";
 import w10 from "@/assets/work/work-10.webp.asset.json";
 import w11 from "@/assets/work/work-11.webp.asset.json";
-import w12 from "@/assets/work/work-12.webp.asset.json";
+import w12 from "@/assets/work/work-12-v2.webp.asset.json";
 import w13 from "@/assets/work/work-13.webp.asset.json";
 import v11 from "@/assets/work/work-11.mp4.asset.json";
 import v12 from "@/assets/work/work-12.mp4.asset.json";
