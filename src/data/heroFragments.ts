@@ -13,13 +13,14 @@ export type FragmentInstance = {
 
 export const heroFragmentSrc = "/images/hero/fragment-1.svg";
 
-// Desktop (≥1024px): headline spans the upper band; intro sits cols 4–7.
+// Desktop (≥1024px): positions are relative to the full browser width, not the content column.
+// headline spans the upper band; intro sits cols 4–7.
 // Free areas: top-right corner, left column under the descriptor, bottom-left, bottom-right.
 export const heroFragmentsDesktop: FragmentInstance[] = [
   { id: "d1", width: "9rem", position: { top: "-2%", right: "4%" }, rotation: -8, fadeEdge: "left", variant: 1 },
-  { id: "d2", width: "8rem", position: { top: "34%", left: "-3%" }, rotation: 12, fadeEdge: "bottom", variant: 2 },
-  { id: "d3", width: "20rem", position: { bottom: "-14%", left: "-7%" }, rotation: -14, fadeEdge: "left", variant: 3 },
-  { id: "d4", width: "24rem", position: { bottom: "-18%", right: "-5%" }, rotation: 4, fadeEdge: "right", variant: 1 },
+  { id: "d2", width: "8rem", position: { top: "34%", left: "1.5rem" }, rotation: 12, fadeEdge: "bottom", variant: 2 },
+  { id: "d3", width: "14rem", position: { bottom: "8%", left: "0.75rem" }, rotation: -14, fadeEdge: "left", variant: 3 },
+  { id: "d4", width: "16.8rem", position: { bottom: "8%", right: "0.75rem" }, rotation: 4, fadeEdge: "right", variant: 1 },
 ];
 
 // Tablet (768–1023px): fewer, smaller instances kept to the edges.
