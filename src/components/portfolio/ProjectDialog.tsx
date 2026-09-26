@@ -18,7 +18,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
       }
       if (e.key === "Tab") {
         const f = el.querySelectorAll<HTMLElement>('button, a[href], [tabindex]:not([tabindex="-1"])');
-        const first = f[0], last = f[f.length - 1];
+        const first = f[0]!, last = f[f.length - 1]!;
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }

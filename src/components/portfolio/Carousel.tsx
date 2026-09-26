@@ -96,7 +96,7 @@ export function Carousel({
 
       <div className="grid grid-cols-12 gap-x-5 gap-y-8">
         {slots.map((slot, s) => {
-          const p = projects[(index + s) % n];
+          const p = projects[(index + s) % n]!;
           const vis = slot.from === "lg" ? "hidden lg:block" : slot.from === "md" ? "hidden md:block" : "";
           return (
             <div
