@@ -4,6 +4,7 @@ import { projectGroups, type Project } from "@/data/projects";
 import { site } from "@/data/site";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
+import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
 
 const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content";
 const DESC = "Portfolio of Aleksandar Tonev: graphic design and prepress with production discipline, plus interior/spatial work and AI visual content.";
@@ -97,7 +98,8 @@ function Home() {
 
         <main id="top" className="mx-auto max-w-[1440px] px-5 md:px-10">
           {/* Hero */}
-          <section className="grid grid-cols-12 gap-5 pb-20 pt-16 md:pb-28 md:pt-24">
+          <section className="relative isolate grid grid-cols-12 gap-5 pb-20 pt-16 md:pb-28 md:pt-24">
+            <HeroFlowerInteraction />
             <p className="col-span-12 font-mono text-xs uppercase tracking-wider md:col-span-3 md:pt-4">
               <span className="text-accent">■</span> {site.descriptor}
             </p>
