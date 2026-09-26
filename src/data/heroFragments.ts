@@ -34,6 +34,7 @@ export const heroFragmentsTablet: FragmentInstance[] = [
   { id: "t2", width: "7rem", position: { top: "45%", left: "0" }, rotation: 12, fadeEdge: "bottom", variant: 1 },
   { id: "t3", width: "8rem", position: { bottom: "0.5rem", left: "0" }, rotation: -14, fadeEdge: "left", variant: 3 },
   { id: "t4", width: "9.5rem", position: { bottom: "-2rem", right: "0" }, rotation: 4, fadeEdge: "bottom", variant: 1 },
+  { id: "t5", width: "5rem", position: { top: "55%", right: "0" }, rotation: -6, fadeEdge: "right", variant: 2 },
 ];
 
 // Mobile (<768px): three small instances in the top padding and the bottom
@@ -42,4 +43,6 @@ export const heroFragmentsMobile: FragmentInstance[] = [
   { id: "m1", width: "3.75rem", position: { top: "0.1rem", right: "0" }, rotation: -8, fadeEdge: "left", variant: 1 },
   { id: "m2", width: "2.75rem", position: { top: "0.4rem", left: "45%" }, rotation: 10, fadeEdge: "top", variant: 3 },
   { id: "m3", width: "5rem", position: { bottom: "-1rem", right: "0" }, rotation: 4, fadeEdge: "bottom", variant: 2 },
+  { id: "m4", width: "3.5rem", position: { bottom: "0.75rem", left: "0" }, rotation: -14, fadeEdge: "left", variant: 1 },
+  { id: "m5", width: "2.5rem", position: { top: "0.5rem", left: "15%" }, rotation: 12, fadeEdge: "bottom", variant: 2 },
 ];
