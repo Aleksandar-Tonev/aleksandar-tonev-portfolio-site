@@ -31,7 +31,7 @@ export function ResumeSection() {
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-x-5 gap-y-10 px-5 py-20 md:px-10 md:py-28">
         <div className="col-span-12 lg:col-span-7">
-          <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+          <p className="font-mono text-xs uppercase tracking-wider text-background/70">
             <span className="text-accent" aria-hidden="true">■</span> {resume.label}
           </p>
           <h2
@@ -51,7 +51,7 @@ export function ResumeSection() {
             {resume.signals.map((s, i) => (
               <li
                 key={s}
-                className="resume-signal border-b border-background/20 py-3 font-mono text-xs uppercase tracking-wider text-muted-foreground"
+                className="resume-signal border-b border-background/20 py-3 font-mono text-xs uppercase tracking-wider text-background/70"
                 style={{ animationDelay: `${120 + i * 50}ms` }}
               >
                 {s}
