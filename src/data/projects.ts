@@ -28,11 +28,7 @@ import v11 from "@/assets/work/work-11.mp4.asset.json";
 import v12 from "@/assets/work/work-12.mp4.asset.json";
 import v13 from "@/assets/work/work-13.mp4.asset.json";
 
-export type Discipline =
-  | "Graphic Design"
-  | "Prepress"
-  | "Interior / Spatial"
-  | "AI Visual Content";
+export type Discipline = string;
 
 export type GroupId = "A" | "B" | "C" | "D";
 export type ProjectAspectRatio = "9:16" | "16:9";
@@ -58,6 +54,14 @@ export interface Project {
   /** Optional video; images[0] is its cover picture. Plays only in the overlay. */
   video?: string;
   year?: number;
+  /** Optional real editorial fields for the static overlay — render only when set. */
+  client?: string;
+  role?: string;
+  services?: string[];
+  format?: string;
+  lead?: string;
+  description?: string[];
+  caption?: string;
   placeholder: boolean;
 }
 
@@ -95,16 +99,16 @@ const withImage = (p: Project, title: string, src: string): Project => {
 };
 
 export const projects: Project[] = [
-  withImage(ph("a1", "01", "A", "9:16", "Graphic Design"), "Hair salon make-up poster", w1.url),
-  withImage(ph("a2", "02", "A", "16:9", "Prepress"), "Davines billboard", w2.url),
-  withImage(ph("a3", "03", "A", "9:16", "Graphic Design"), "Botyo Bukov book cover", w3.url),
-  withImage(ph("a4", "04", "A", "16:9", "Prepress"), "Aspen Invest calendar header", w4.url),
-  withImage(ph("b1", "05", "B", "16:9", "Prepress"), "Bulgarian National Audit Office calendar header", w5.url),
-  withImage(ph("b2", "06", "B", "9:16", "Graphic Design"), "Dream catcher colour study", w6.url),
-  withImage(ph("b3", "07", "B", "16:9", "Graphic Design"), "Geometric shapes drawing", w7.url),
-  withImage(ph("c1", "08", "C", "9:16", "Graphic Design"), "University of Forestry flyer 2018", w8.url),
-  withImage(ph("c2", "09", "C", "16:9", "Graphic Design"), "Logo mock-up", w9.url),
-  withImage(ph("c3", "10", "C", "9:16", "Graphic Design"), "Business card", w10.url),
+  withImage(ph("a1", "01", "A", "9:16", "Poster Design"), "Hair Salon Poster", w1.url),
+  withImage(ph("a2", "02", "A", "16:9", "Outdoor Advertising"), "Davines — 100% Vitality", w2.url),
+  withImage(ph("a3", "03", "A", "9:16", "Book Design"), "Botyo Bukov Book", w3.url),
+  withImage(ph("a4", "04", "A", "16:9", "Calendar Design"), "Aspen Invest Calendar", w4.url),
+  withImage(ph("b1", "05", "B", "16:9", "Institutional Design"), "Bulgarian National Audit Office Calendar", w5.url),
+  withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Dream Catcher", w6.url),
+  withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7.url),
+  withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8.url),
+  withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9.url),
+  withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Personal Business Card", w10.url),
   { ...withImage(ph("d1", "11", "D", "16:9", "AI Visual Content"), "Motion video", w11.url), video: v11.url },
   { ...withImage(ph("d2", "12", "D", "16:9", "AI Visual Content"), "Architectural clip", w12.url), video: v12.url, fill: true },
   { ...withImage(ph("d3", "13", "D", "9:16", "AI Visual Content"), "Cosmic clip", w13.url), video: v13.url },
@@ -123,3 +127,6 @@ export const projectGroups: Record<GroupId, Project[]> = {
   C: projectsIn("C"),
   D: projectsIn("D"),
 };
+
+/** Static projects 01–10 (no video), in numerical order, for the editorial overlay. */
+export const staticProjects = projects.filter((p) => !p.video);
