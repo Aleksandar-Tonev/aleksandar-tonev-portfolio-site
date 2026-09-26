@@ -59,6 +59,7 @@ export function CarouselGroup({
   const isAnimating = phase !== "idle";
   const timers = useRef<number[]>([]);
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const dragged = useRef(false);
   const reduced = useMedia("(prefers-reduced-motion: reduce)");
   const isLg = useMedia("(min-width: 1024px)");
   const isMd = useMedia("(min-width: 768px)");
@@ -117,6 +118,7 @@ export function CarouselGroup({
         if (!t) return;
         const dx = e.changedTouches[0]!.clientX - t.x;
         const dy = e.changedTouches[0]!.clientY - t.y;
+        dragged.current = Math.abs(dx) > 10 || Math.abs(dy) > 10;
         if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? "next" : "previous");
       }}
     >
@@ -146,13 +148,17 @@ export function CarouselGroup({
             >
               <button
                 type="button"
-                onClick={(e) => onProjectOpen(p, e.currentTarget)}
+                onClick={(e) => {
+                  // A drag/swipe must never open (or play) a project.
+                  if (dragged.current) { dragged.current = false; return; }
+                  onProjectOpen(p, e.currentTarget);
+                }}
                 aria-haspopup="dialog"
                 disabled={phase === "out"}
                 className={`group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${animClass}`}
                 style={{ animationDelay: phase === "in" ? `${s * STAGGER_MS}ms` : undefined }}
               >
-                <Media project={p} ratio={slot.frame} eager thumb={!p.video} />
+                <Media project={p} ratio={slot.frame} eager thumb={!p.video} videoThumb={!!p.video} />
                 <span className="mt-3 flex items-baseline justify-between gap-3">
                   <span className="font-display text-lg uppercase leading-tight underline-offset-4 group-hover:text-accent group-hover:underline group-focus-visible:text-accent">
                     {p.title}

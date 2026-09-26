@@ -53,6 +53,8 @@ export interface Project {
   fill?: boolean;
   /** Optional video; images[0] is its cover picture. Plays only in the overlay. */
   video?: string;
+  /** Video running time, e.g. "01:27". */
+  duration?: string;
   year?: number;
   /** Optional real editorial fields for the static overlay — render only when set. */
   client?: string;
@@ -109,9 +111,9 @@ export const projects: Project[] = [
   withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8.url),
   withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9.url),
   withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Personal Business Card", w10.url),
-  { ...withImage(ph("d1", "11", "D", "16:9", "AI Visual Content"), "Motion video", w11.url), video: v11.url },
-  { ...withImage(ph("d2", "12", "D", "16:9", "AI Visual Content"), "Architectural clip", w12.url), video: v12.url, fill: true },
-  { ...withImage(ph("d3", "13", "D", "9:16", "AI Visual Content"), "Cosmic clip", w13.url), video: v13.url },
+  { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11.url), video: v11.url, duration: "00:28" },
+  { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12.url), video: v12.url, fill: true, duration: "01:27" },
+  { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13.url), video: v13.url, duration: "01:08" },
 ];
 
 export const PROJECT_TOTAL = 13;
@@ -130,3 +132,6 @@ export const projectGroups: Record<GroupId, Project[]> = {
 
 /** Static projects 01–10 (no video), in numerical order, for the editorial overlay. */
 export const staticProjects = projects.filter((p) => !p.video);
+
+/** Video projects 11–13, in order, for the video overlay. */
+export const videoProjects = projects.filter((p) => p.video);

@@ -3,7 +3,8 @@ import { useCallback, useRef, useState } from "react";
 import { projectGroups, type Project } from "@/data/projects";
 import { site } from "@/data/site";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
-import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
+import { lazy, Suspense } from "react";
+const VideoProjectOverlay = lazy(() => import("@/components/portfolio/VideoProjectOverlay"));
 import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
 import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
 import { AboutPortrait } from "@/components/portfolio/AboutPortrait";
@@ -177,7 +178,7 @@ function Home() {
         </footer>
       </div>
       {open && (open.video
-        ? <ProjectDialog project={open} onClose={close} />
+        ? <Suspense fallback={null}><VideoProjectOverlay project={open} onNavigate={setOpen} onClose={close} /></Suspense>
         : <StaticProjectOverlay project={open} onNavigate={setOpen} onClose={close} />)}
     </>
   );
