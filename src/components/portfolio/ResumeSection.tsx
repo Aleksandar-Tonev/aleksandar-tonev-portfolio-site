@@ -36,12 +36,18 @@ export function ResumeSection() {
           </p>
           <h2
             id="resume-h"
-            className="resume-reveal mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
+            className="mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
           >
-            <span className="text-accent">{resume.statement[0].split(" ")[0] ?? ""}</span>{" "}
-            {resume.statement[0].split(" ").slice(1).join(" ")}
+            <span className="resume-clip">
+              <span className="resume-rv resume-rv-a text-accent">{resume.statement[0].split(" ")[0] ?? ""}</span>
+            </span>{" "}
+            <span className="resume-clip">
+              <span className="resume-rv resume-rv-b">{resume.statement[0].split(" ").slice(1).join(" ")}</span>
+            </span>
             <br />
-            {resume.statement[1]}
+            <span className="resume-clip">
+              <span className="resume-rv resume-rv-b">{resume.statement[1]}</span>
+            </span>
           </h2>
         </div>
 
