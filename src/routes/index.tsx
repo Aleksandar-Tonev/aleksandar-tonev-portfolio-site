@@ -3,6 +3,7 @@ import { useCallback, useRef, useState } from "react";
 import { projectGroups, type Project } from "@/data/projects";
 import { site } from "@/data/site";
 import { Carousel, type Slot } from "@/components/portfolio/Carousel";
+import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
 
 const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content";
@@ -23,10 +24,10 @@ export const Route = createFileRoute("/")({
 });
 
 // Carousel A: three stable editorial slots with fixed offsets.
-const slotsA: Slot[] = [
-  { ratio: "4/5", offset: "0rem", span: "col-span-12 md:col-span-6 lg:col-span-5" },
-  { ratio: "1/1", offset: "6rem", span: "col-span-12 md:col-span-6 lg:col-span-4", from: "md" },
-  { ratio: "3/4", offset: "2.5rem", span: "col-span-12 lg:col-span-3", from: "lg" },
+const slotsA: EditorialSlot[] = [
+  { frame: "4/5", span: "col-span-12 md:col-span-6 lg:col-span-5", offsetMd: "0rem", offsetLg: "0rem" },
+  { frame: "1/1", span: "col-span-12 md:col-span-6 lg:col-span-4", offsetMd: "2.5rem", offsetLg: "6rem" },
+  { frame: "3/4", span: "col-span-12 lg:col-span-3", offsetMd: "0rem", offsetLg: "2.5rem" },
 ];
 const slotsB: Slot[] = [
   { ratio: "3/2", offset: "0rem", span: "col-span-12 md:col-span-7" },
@@ -49,7 +50,11 @@ function Home() {
   }, []);
   const close = useCallback(() => {
     setOpen(null);
-    requestAnimationFrame(() => trigger.current?.focus());
+    requestAnimationFrame(() => {
+      const t = trigger.current;
+      if (t?.isConnected) t.focus();
+      else document.getElementById("carousel-a-heading")?.focus();
+    });
   }, []);
 
   const links = [["Work", "#work"], ["About", "#about"], ["Contact", "#contact"]] as const;
@@ -116,7 +121,7 @@ function Home() {
               <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Placeholder content</p>
             </div>
             <div className="space-y-24 md:space-y-32">
-              <Carousel id="A" label="Group A" projects={projectGroups.A} slots={slotsA} onOpen={openProject} />
+              <CarouselGroup id="A" label="Group A" projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />
               <div className="md:ml-[8.33%]">
                 <Carousel id="B" label="Group B" projects={projectGroups.B} slots={slotsB} onOpen={openProject} />
               </div>

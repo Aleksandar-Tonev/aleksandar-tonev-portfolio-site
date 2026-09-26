@@ -68,11 +68,20 @@
   --animate-slot-next: slot-next 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-slot-prev: slot-prev 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-fade: fade 200ms ease-out both;
+  /* Carousel group timings — keep in sync with OUT_MS / IN_MS in CarouselGroup.tsx */
+  --animate-card-out-left: card-out-left 180ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  --animate-card-out-right: card-out-right 180ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  --animate-card-in-right: card-in-right 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  --animate-card-in-left: card-in-left 200ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 @keyframes slot-next { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
 @keyframes slot-prev { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes card-out-left { to { opacity: 0; transform: translateX(-32px); } }
+@keyframes card-out-right { to { opacity: 0; transform: translateX(32px); } }
+@keyframes card-in-right { from { opacity: 0; transform: translateX(32px); } to { opacity: 1; transform: none; } }
+@keyframes card-in-left { from { opacity: 0; transform: translateX(-32px); } to { opacity: 1; transform: none; } }
 
 :root {
   /* Paper #F4F1EA, near-black #20201E, stone #A7A49C, vermilion #D85B3F */
@@ -165,7 +174,9 @@
   min-width: 2.75rem; min-height: 2.75rem; padding: 0 0.75rem;
   border: 1px solid var(--color-foreground);
   transition: background-color 200ms, color 200ms;
-  &:hover { background: var(--color-foreground); color: var(--color-background); }
+  &:hover:not(:disabled) { background: var(--color-foreground); color: var(--color-background); }
+  &:active:not(:disabled) { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-background); }
+  &:disabled { opacity: 0.45; cursor: default; }
 }
 @utility btn-primary {
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1.25rem;
