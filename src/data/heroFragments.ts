@@ -21,6 +21,9 @@ export const heroFragmentsDesktop: FragmentInstance[] = [
   { id: "d2", width: "8rem", position: { top: "34%", left: "1.5rem" }, rotation: 12, fadeEdge: "bottom", variant: 2 },
   { id: "d3", width: "14rem", position: { bottom: "8%", left: "0.75rem" }, rotation: -14, fadeEdge: "left", variant: 3 },
   { id: "d4", width: "16.8rem", position: { bottom: "8%", right: "0.75rem" }, rotation: 4, fadeEdge: "right", variant: 1 },
+  // Above the headline, and in the gap after "INTENT."
+  { id: "d5", width: "6.5rem", position: { top: "0.5rem", left: "44%" }, rotation: 10, fadeEdge: "top", variant: 2 },
+  { id: "d6", width: "8rem", position: { top: "18rem", left: "61%" }, rotation: -6, fadeEdge: "bottom", variant: 3 },
 ];
 
 // Tablet (768–1023px): fewer, smaller instances kept to the edges.
