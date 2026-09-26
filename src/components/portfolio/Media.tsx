@@ -11,6 +11,7 @@ export function Media({
   eager,
   playable,
   thumb,
+  videoThumb,
 }: {
   project: Project;
   /** Frame ratio, e.g. "4/5". */
@@ -20,6 +21,8 @@ export function Media({
   playable?: boolean;
   /** Static carousel thumbnail: "+" affordance and hover/tap feedback. */
   thumb?: boolean;
+  /** Video carousel thumbnail: central play button + duration label. */
+  videoThumb?: boolean;
 }) {
   const [fw, fh] = ratio.split("/").map(Number) as [number, number];
   const pr = ratioValue(project.aspectRatio);
@@ -30,7 +33,7 @@ export function Media({
   return (
     <div className="relative flex w-full items-start" style={{ aspectRatio: ratio.replace("/", " / ") }}>
       <div
-        className={`relative overflow-hidden bg-muted ${thumb ? "thumb" : ""}`}
+        className={`relative overflow-hidden bg-muted ${thumb || videoThumb ? "thumb" : ""}`}
         style={{
           aspectRatio: cssRatio,
           ...(widthLimited ? { width: "100%" } : { height: "100%" }),
@@ -68,6 +71,14 @@ export function Media({
           </div>
         )}
         {thumb && <span aria-hidden className="thumb-plus">+</span>}
+        {videoThumb && (
+          <>
+            <span className="vthumb-play" role="img" aria-label="Play video">
+              <svg viewBox="0 0 24 24" aria-hidden width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
+            </span>
+            {project.duration && <span className="vthumb-dur">{project.duration}</span>}
+          </>
+        )}
       </div>
     </div>
   );
