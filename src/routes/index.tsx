@@ -41,10 +41,12 @@ const slotsD: EditorialSlot[] = [{ frame: "21/9", span: "col-span-12", offsetMd:
 function Home() {
   const [open, setOpen] = useState<Project | null>(null);
   const trigger = useRef<HTMLElement | null>(null);
+  const headingId = useRef<string | null>(null);
   const [menu, setMenu] = useState(false);
 
   const openProject = useCallback((p: Project, el: HTMLElement) => {
     trigger.current = el;
+    headingId.current = el.closest("section")?.getAttribute("aria-labelledby") ?? null;
     setOpen(p);
   }, []);
   const close = useCallback(() => {
@@ -52,7 +54,7 @@ function Home() {
     requestAnimationFrame(() => {
       const t = trigger.current;
       if (t?.isConnected) t.focus();
-      else (document.querySelector<HTMLElement>("[id^=carousel-][id$=-heading]"))?.focus();
+      else if (headingId.current) document.getElementById(headingId.current)?.focus();
     });
   }, []);
 
