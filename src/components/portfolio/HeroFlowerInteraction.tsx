@@ -8,7 +8,7 @@ import {
 } from "@/data/heroFragments";
 
 /**
- * Decorative flower fragments behind the Hero. Plays once (~4s): fade in,
+ * Decorative flower fragments behind the Hero. Plays once (5s): fade in,
  * soft irregular flicker, fade out to invisible. No pointer/scroll input.
  * Reduced motion: stays invisible.
  */
