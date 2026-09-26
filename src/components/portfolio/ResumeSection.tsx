@@ -38,7 +38,7 @@ export function ResumeSection() {
             id="resume-h"
             className="resume-reveal mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
           >
-            <span className="text-accent">{resume.statement[0].split(" ")[0]}</span>{" "}
+            <span className="text-accent">{resume.statement[0].split(" ")[0] ?? ""}</span>{" "}
             {resume.statement[0].split(" ").slice(1).join(" ")}
             <br />
             {resume.statement[1]}
