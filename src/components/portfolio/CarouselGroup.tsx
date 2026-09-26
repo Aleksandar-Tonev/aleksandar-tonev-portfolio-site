@@ -131,7 +131,7 @@ export function CarouselGroup({
         <h3 id={headingId} tabIndex={-1} className="font-mono text-xs uppercase tracking-wider outline-none focus-visible:outline-2 focus-visible:outline-accent">
           <span className="text-accent">{id}</span> — {label}
         </h3>
-        <p className="hidden font-mono text-xs tabular-nums lg:block" aria-hidden>
+        <p className="hidden" aria-hidden>
           {range} / {pad(n)}
         </p>
         <p className="sr-only" aria-live="polite">
@@ -178,15 +178,9 @@ export function CarouselGroup({
           );
         })}
       </div>
-      {canNavigate && isLg && (
-        <>
-          <ArrowBtn dir="previous" disabled={atStart || isAnimating} onClick={() => go("previous")} className="absolute left-5 top-1/2 z-10 -translate-y-1/2" />
-          <ArrowBtn dir="next" disabled={atEnd || isAnimating} onClick={() => go("next")} className="absolute right-5 top-1/2 z-10 -translate-y-1/2" />
-        </>
-      )}
       </div>
 
-      {canNavigate && !isLg && (
+      {canNavigate && (
         <div className="mt-6 flex items-center justify-center gap-5">
           <ArrowBtn dir="previous" disabled={atStart || isAnimating} onClick={() => go("previous")} />
           <p className="font-mono text-xs tabular-nums" aria-hidden>{range} / {pad(n)}</p>
