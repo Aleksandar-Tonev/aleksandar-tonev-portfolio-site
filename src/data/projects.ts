@@ -21,6 +21,12 @@ import w7 from "@/assets/work/work-7.webp.asset.json";
 import w8 from "@/assets/work/work-8.webp.asset.json";
 import w9 from "@/assets/work/work-9.webp.asset.json";
 import w10 from "@/assets/work/work-10.webp.asset.json";
+import w11 from "@/assets/work/work-11.webp.asset.json";
+import w12 from "@/assets/work/work-12.webp.asset.json";
+import w13 from "@/assets/work/work-13.webp.asset.json";
+import v11 from "@/assets/work/work-11.mp4.asset.json";
+import v12 from "@/assets/work/work-12.mp4.asset.json";
+import v13 from "@/assets/work/work-13.mp4.asset.json";
 
 export type Discipline =
   | "Graphic Design"
@@ -47,6 +53,8 @@ export interface Project {
   purpose: string;
   images: ProjectImage[];
   alt: string;
+  /** Optional video; images[0] is its cover picture. Plays only in the overlay. */
+  video?: string;
   year?: number;
   placeholder: boolean;
 }
@@ -95,9 +103,9 @@ export const projects: Project[] = [
   withImage(ph("c1", "08", "C", "9:16", "Graphic Design"), "University of Forestry flyer 2018", w8.url),
   withImage(ph("c2", "09", "C", "16:9", "Graphic Design"), "Logo mock-up", w9.url),
   withImage(ph("c3", "10", "C", "9:16", "Graphic Design"), "Business card", w10.url),
-  ph("d1", "11", "D", "16:9", "AI Visual Content"),
-  ph("d2", "12", "D", "16:9", "Graphic Design"),
-  ph("d3", "13", "D", "9:16", "Prepress"),
+  { ...withImage(ph("d1", "11", "D", "16:9", "AI Visual Content"), "Motion video", w11.url), video: v11.url },
+  { ...withImage(ph("d2", "12", "D", "16:9", "AI Visual Content"), "Architectural clip", w12.url), video: v12.url },
+  { ...withImage(ph("d3", "13", "D", "9:16", "AI Visual Content"), "Cosmic clip", w13.url), video: v13.url },
 ];
 
 export const PROJECT_TOTAL = 13;
