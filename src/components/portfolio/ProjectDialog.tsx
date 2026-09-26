@@ -57,7 +57,7 @@ export function ProjectDialog({ project, onClose }: { project: Project; onClose:
             ✕
           </button>
         </div>
-        <div className="mx-auto max-h-[60vh] w-full" style={{ maxWidth: "calc(60vh * 16 / 10)" }}><Media project={project} ratio="16/10" eager /></div>
+        <div className="mx-auto max-h-[60vh] w-full" style={{ maxWidth: "calc(60vh * 16 / 10)" }}><Media project={project} ratio="16/10" eager playable /></div>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div>
             <h3 className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Description</h3>

@@ -9,11 +9,14 @@ export function Media({
   project,
   ratio,
   eager,
+  playable,
 }: {
   project: Project;
   /** Frame ratio, e.g. "4/5". */
   ratio: string;
   eager?: boolean;
+  /** Show the project's video player (overlay only). */
+  playable?: boolean;
 }) {
   const [fw, fh] = ratio.split("/").map(Number) as [number, number];
   const pr = ratioValue(project.aspectRatio);
@@ -30,7 +33,17 @@ export function Media({
           ...(widthLimited ? { width: "100%" } : { height: "100%" }),
         }}
       >
-        {img ? (
+        {playable && project.video ? (
+          <video
+            src={project.video}
+            poster={img?.src}
+            controls
+            playsInline
+            preload="metadata"
+            aria-label={project.alt}
+            className="absolute inset-0 size-full bg-foreground object-contain"
+          />
+        ) : img ? (
           <img
             src={img.src}
             width={img.width}
