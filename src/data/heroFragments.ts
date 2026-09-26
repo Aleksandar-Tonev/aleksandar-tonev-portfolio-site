@@ -26,15 +26,20 @@ export const heroFragmentsDesktop: FragmentInstance[] = [
   { id: "d6", width: "8rem", position: { top: "18rem", left: "61%" }, rotation: -6, fadeEdge: "bottom", variant: 3 },
 ];
 
-// Tablet (768–1023px): fewer, smaller instances kept to the edges.
+// Tablet (768–1023px): all instances inside the page padding (never cut at
+// the screen edge). Left column under the descriptor is free; the lower-right
+// piece crosses slightly into Selected Work, behind its content.
 export const heroFragmentsTablet: FragmentInstance[] = [
-  { id: "t1", width: "7rem", position: { top: "-4%", right: "3%" }, rotation: -8, fadeEdge: "left", variant: 2 },
-  { id: "t2", width: "14rem", position: { bottom: "-16%", left: "-8%" }, rotation: -14, fadeEdge: "left", variant: 1 },
-  { id: "t3", width: "16rem", position: { bottom: "-20%", right: "-8%" }, rotation: 4, fadeEdge: "right", variant: 3 },
+  { id: "t1", width: "6rem", position: { top: "0", right: "0" }, rotation: -8, fadeEdge: "left", variant: 2 },
+  { id: "t2", width: "7rem", position: { top: "45%", left: "0" }, rotation: 12, fadeEdge: "bottom", variant: 1 },
+  { id: "t3", width: "8rem", position: { bottom: "0.5rem", left: "0" }, rotation: -14, fadeEdge: "left", variant: 3 },
+  { id: "t4", width: "9.5rem", position: { bottom: "-2rem", right: "0" }, rotation: 4, fadeEdge: "bottom", variant: 1 },
 ];
 
-// Mobile (<768px): two small instances in the top and bottom padding only.
+// Mobile (<768px): three small instances in the top padding and the bottom
+// padding (the lower one crossing a little into Selected Work).
 export const heroFragmentsMobile: FragmentInstance[] = [
-  { id: "m1", width: "4.5rem", position: { top: "0.25rem", right: "0" }, rotation: -8, fadeEdge: "left", variant: 1 },
-  { id: "m2", width: "7rem", position: { bottom: "-3.5rem", right: "-1.5rem" }, rotation: 4, fadeEdge: "right", variant: 2 },
+  { id: "m1", width: "3.75rem", position: { top: "0.1rem", right: "0" }, rotation: -8, fadeEdge: "left", variant: 1 },
+  { id: "m2", width: "2.75rem", position: { top: "0.4rem", left: "45%" }, rotation: 10, fadeEdge: "top", variant: 3 },
+  { id: "m3", width: "5rem", position: { bottom: "-1rem", right: "0" }, rotation: 4, fadeEdge: "bottom", variant: 2 },
 ];

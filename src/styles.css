@@ -230,7 +230,7 @@
 }
 
 /* Hero flower fragments — one-shot 4s: 500ms ease-in fade, 3s soft flicker, 500ms ease-out fade */
-.hero-flower-layer { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.hero-flower-layer { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: visible; }
 .hero-flower-fragment {
   position: absolute; height: auto; max-width: none; opacity: 0; pointer-events: none; user-select: none;
   transform: rotate(var(--active-rotation, 0deg));
