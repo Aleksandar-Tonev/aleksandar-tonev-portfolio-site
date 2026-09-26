@@ -11,6 +11,17 @@
  * Placement and offsets are handled by the layout, never stored here.
  */
 
+import w1 from "@/assets/work/work-1.webp.asset.json";
+import w2 from "@/assets/work/work-2.png.asset.json";
+import w3 from "@/assets/work/work-3.webp.asset.json";
+import w4 from "@/assets/work/work-4.webp.asset.json";
+import w5 from "@/assets/work/work-5.webp.asset.json";
+import w6 from "@/assets/work/work-6.webp.asset.json";
+import w7 from "@/assets/work/work-7.webp.asset.json";
+import w8 from "@/assets/work/work-8.webp.asset.json";
+import w9 from "@/assets/work/work-9.webp.asset.json";
+import w10 from "@/assets/work/work-10.webp.asset.json";
+
 export type Discipline =
   | "Graphic Design"
   | "Prepress"
