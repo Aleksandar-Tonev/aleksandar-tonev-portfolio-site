@@ -4,6 +4,7 @@ import { projectGroups, type Project } from "@/data/projects";
 import { site } from "@/data/site";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
+import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
 import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
 import { AboutPortrait } from "@/components/portfolio/AboutPortrait";
 import { ResumeSection } from "@/components/portfolio/ResumeSection";
@@ -175,7 +176,9 @@ function Home() {
           </div>
         </footer>
       </div>
-      {open && <ProjectDialog project={open} onClose={close} />}
+      {open && (open.video
+        ? <ProjectDialog project={open} onClose={close} />
+        : <StaticProjectOverlay project={open} onNavigate={setOpen} onClose={close} />)}
     </>
   );
 }

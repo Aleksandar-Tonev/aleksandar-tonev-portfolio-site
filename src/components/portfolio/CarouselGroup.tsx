@@ -152,7 +152,7 @@ export function CarouselGroup({
                 className={`group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${animClass}`}
                 style={{ animationDelay: phase === "in" ? `${s * STAGGER_MS}ms` : undefined }}
               >
-                <Media project={p} ratio={slot.frame} eager />
+                <Media project={p} ratio={slot.frame} eager thumb={!p.video} />
                 <span className="mt-3 flex items-baseline justify-between gap-3">
                   <span className="font-display text-lg uppercase leading-tight underline-offset-4 group-hover:text-accent group-hover:underline group-focus-visible:text-accent">
                     {p.title}
