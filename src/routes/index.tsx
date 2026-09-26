@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
 import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
+import { ResumeSection } from "@/components/portfolio/ResumeSection";
 
 const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content";
 const DESC = "Portfolio of Aleksandar Tonev: graphic design and prepress with production discipline, plus interior/spatial work and AI visual content.";
@@ -155,8 +156,10 @@ function Home() {
           </section>
         </main>
 
+        <ResumeSection />
+
         {/* Contact */}
-        <footer id="contact" className="scroll-mt-16 bg-foreground text-background">
+        <footer id="contact" className="scroll-mt-16 border-t border-background/15 bg-foreground text-background">
           <div className="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-28">
             <p className="font-mono text-xs uppercase tracking-wider opacity-70">Contact</p>
             <h2 className="mt-4 max-w-4xl font-display text-4xl uppercase leading-none md:text-7xl">
