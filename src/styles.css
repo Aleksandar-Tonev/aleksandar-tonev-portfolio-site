@@ -287,3 +287,14 @@ body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .resume[data-in] .resume-rv { opacity: 1; animation: none; transform: none; }
 }
+
+/* About portrait reveal */
+.portrait-color { transition: clip-path 550ms cubic-bezier(0.22, 1, 0.36, 1); will-change: clip-path; }
+.portrait-cue { background: linear-gradient(135deg, transparent 49.5%, rgb(255 255 255 / 0.35) 50%, transparent 51%); }
+.portrait-ctl { background: rgb(20 20 18 / 0.6); color: #fff; backdrop-filter: blur(6px); }
+.portrait:focus-visible { outline: none; }
+.portrait:focus-visible .portrait-ctl { outline: 2px solid var(--color-accent, #D85B3F); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .portrait-color { transition: opacity 150ms linear; clip-path: none !important; opacity: 0; }
+  .portrait-color[data-on="true"] { opacity: 1; }
+}
