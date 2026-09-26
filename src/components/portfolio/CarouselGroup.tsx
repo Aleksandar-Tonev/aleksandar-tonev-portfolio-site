@@ -136,6 +136,7 @@ export function CarouselGroup({
         </p>
       </div>
 
+      <div className="relative">
       <div className="grid grid-cols-12 gap-x-5 gap-y-8" aria-busy={isAnimating}>
         {slots.slice(0, maxSlots).map((slot, s) => {
           const p = projects[(currentIndex + s) % n]!;
@@ -172,17 +173,38 @@ export function CarouselGroup({
           );
         })}
       </div>
+      {canNavigate && isLg && (
+        <>
+          <ArrowBtn dir="previous" disabled={atStart || isAnimating} onClick={() => go("previous")} className="absolute left-5 top-1/2 z-10 -translate-y-1/2" />
+          <ArrowBtn dir="next" disabled={atEnd || isAnimating} onClick={() => go("next")} className="absolute right-5 top-1/2 z-10 -translate-y-1/2" />
+        </>
+      )}
+      </div>
 
-      {canNavigate && (
-        <div className="mt-6 flex justify-end gap-3">
-          <button type="button" onClick={() => go("previous")} disabled={isAnimating} className="nav-btn" aria-label={`Previous projects in group ${id}`}>
-            ←
-          </button>
-          <button type="button" onClick={() => go("next")} disabled={isAnimating} className="nav-btn" aria-label={`Next projects in group ${id}`}>
-            →
-          </button>
+      {canNavigate && !isLg && (
+        <div className="mt-6 flex items-center justify-center gap-5">
+          <ArrowBtn dir="previous" disabled={atStart || isAnimating} onClick={() => go("previous")} />
+          <p className="font-mono text-xs tabular-nums" aria-hidden>{range} / {pad(n)}</p>
+          <ArrowBtn dir="next" disabled={atEnd || isAnimating} onClick={() => go("next")} />
         </div>
       )}
     </section>
+  );
+}
+
+function ArrowBtn({ dir, disabled, onClick, className = "" }: { dir: "next" | "previous"; disabled: boolean; onClick: () => void; className?: string }) {
+  return (
+    <button
+      type="button"
+      data-dir={dir}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={dir === "next" ? "Next project" : "Previous project"}
+      className={`carousel-arrow ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden style={dir === "previous" ? { rotate: "180deg" } : undefined}>
+        <path d="M3 12h17M14 6l6 6-6 6" strokeLinecap="square" />
+      </svg>
+    </button>
   );
 }

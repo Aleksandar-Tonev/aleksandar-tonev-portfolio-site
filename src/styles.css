@@ -178,6 +178,29 @@
   &:active:not(:disabled) { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-background); }
   &:disabled { opacity: 0.45; cursor: default; }
 }
+@utility carousel-arrow {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.75rem; height: 2.75rem; border-radius: 2px;
+  border: 1px solid var(--color-foreground);
+  background: color-mix(in oklab, var(--color-background) 94%, transparent);
+  color: var(--color-foreground); cursor: pointer;
+  transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out, transform 80ms;
+  & svg { width: 20px; height: 20px; transition: transform 200ms ease-out; }
+  @media (min-width: 1024px) { width: 3rem; height: 3rem; & svg { width: 22px; height: 22px; } }
+  &:hover:not(:disabled), &:focus-visible:not(:disabled) {
+    background: var(--color-accent); border-color: var(--color-accent); color: var(--color-background);
+  }
+  &[data-dir="next"]:hover:not(:disabled) svg, &[data-dir="next"]:focus-visible:not(:disabled) svg { transform: translateX(3px); }
+  &[data-dir="previous"]:hover:not(:disabled) svg, &[data-dir="previous"]:focus-visible:not(:disabled) svg { transform: translateX(-3px); }
+  &:active:not(:disabled) { transform: scale(0.96); }
+  &:focus-visible { outline: 2px solid var(--color-foreground); outline-offset: 3px; }
+  &:disabled { cursor: default; border-color: color-mix(in oklab, var(--color-foreground) 30%, transparent); }
+  &:disabled svg { opacity: 0.3; }
+  @media (prefers-reduced-motion: reduce) {
+    &:active:not(:disabled) { transform: none; }
+    & svg { transform: none !important; }
+  }
+}
 @utility btn-primary {
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0 1.25rem;
   background: var(--color-foreground); color: var(--color-background);
