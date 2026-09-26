@@ -1,34 +1,36 @@
 // Hero flower fragments — the single place to adjust placement.
-// Positions are initial art direction; refine visually as needed.
-export type HeroFragment = {
+// One artwork (fragment-1.svg) repeated at several sizes. Each breakpoint has
+// its own list so instances never overlap each other or the hero text.
+export type FragmentInstance = {
   id: string;
-  src: string;
-  size: "small-1" | "small-2" | "small-3" | "large-1" | "large-2";
+  width: string;
   position: { top?: string; right?: string; bottom?: string; left?: string };
   rotation: number;
-  triggerZone: "top-left" | "top-right" | "center" | "bottom-left" | "bottom-right";
   fadeEdge: "top" | "right" | "bottom" | "left";
-  /** Entrance offset [x, y] (8–12px). */
-  enter: [string, string];
-  /** Shown statically on touch / coarse-pointer devices. */
-  showOnMobile?: boolean;
+  /** Which flicker curve to use, so instances don't pulse in unison. */
+  variant: 1 | 2 | 3;
 };
 
-export const heroFragments: HeroFragment[] = [
-  { id: "f1", src: "/images/hero/fragment-1.svg", size: "small-1", position: { top: "8%", left: "30%" }, rotation: 12, triggerZone: "top-left", fadeEdge: "bottom", enter: ["0px", "10px"] },
-  { id: "f2", src: "/images/hero/fragment-2.svg", size: "small-2", position: { top: "-4%", right: "22%" }, rotation: -8, triggerZone: "top-right", fadeEdge: "left", enter: ["10px", "0px"], showOnMobile: true },
-  { id: "f3", src: "/images/hero/fragment-3.svg", size: "small-3", position: { bottom: "6%", right: "34%" }, rotation: 6, triggerZone: "center", fadeEdge: "top", enter: ["0px", "-10px"] },
-  { id: "f4", src: "/images/hero/fragment-4.svg", size: "large-1", position: { bottom: "4%", left: "-8%" }, rotation: -14, triggerZone: "bottom-left", fadeEdge: "left", enter: ["10px", "0px"] },
-  { id: "f5", src: "/images/hero/fragment-5.svg", size: "large-2", position: { bottom: "-12%", right: "-6%" }, rotation: 0, triggerZone: "bottom-right", fadeEdge: "right", enter: ["-10px", "10px"], showOnMobile: true },
+export const heroFragmentSrc = "/images/hero/fragment-1.svg";
+
+// Desktop (≥1024px): headline spans the upper band; intro sits cols 4–7.
+// Free areas: top-right corner, left column under the descriptor, bottom-left, bottom-right.
+export const heroFragmentsDesktop: FragmentInstance[] = [
+  { id: "d1", width: "9rem", position: { top: "-2%", right: "4%" }, rotation: -8, fadeEdge: "left", variant: 1 },
+  { id: "d2", width: "8rem", position: { top: "34%", left: "-3%" }, rotation: 12, fadeEdge: "bottom", variant: 2 },
+  { id: "d3", width: "20rem", position: { bottom: "-14%", left: "-7%" }, rotation: -14, fadeEdge: "left", variant: 3 },
+  { id: "d4", width: "24rem", position: { bottom: "-18%", right: "-5%" }, rotation: 4, fadeEdge: "right", variant: 1 },
 ];
 
-// Timed sequence (plays once, no loop). Consecutive states share a fragment so
-// there is never a blank frame. ~9 steps x 870ms ≈ 8s.
-export const heroSequence = {
-  holdMs: 750,
-  blinkMs: 120,
-  desktop: [["f2"], ["f2", "f4"], ["f4"], ["f4", "f3"], ["f3", "f5"], ["f5", "f1"], ["f1", "f4"], ["f4", "f2"], ["f2", "f5"]],
-  desktopFinal: ["f2", "f4", "f5"],
-  mobile: [["f5"], ["f5", "f2"], ["f2"], ["f2", "f5"], ["f5"], ["f5", "f2"], ["f2"], ["f2", "f5"], ["f5"]],
-  mobileFinal: ["f2", "f5"],
-} satisfies Record<string, unknown>;
+// Tablet (768–1023px): fewer, smaller instances kept to the edges.
+export const heroFragmentsTablet: FragmentInstance[] = [
+  { id: "t1", width: "7rem", position: { top: "-4%", right: "3%" }, rotation: -8, fadeEdge: "left", variant: 2 },
+  { id: "t2", width: "14rem", position: { bottom: "-16%", left: "-8%" }, rotation: -14, fadeEdge: "left", variant: 1 },
+  { id: "t3", width: "16rem", position: { bottom: "-20%", right: "-8%" }, rotation: 4, fadeEdge: "right", variant: 3 },
+];
+
+// Mobile (<768px): two small instances in the top and bottom padding only.
+export const heroFragmentsMobile: FragmentInstance[] = [
+  { id: "m1", width: "4.5rem", position: { top: "0.25rem", right: "0" }, rotation: -8, fadeEdge: "left", variant: 1 },
+  { id: "m2", width: "7rem", position: { bottom: "-3.5rem", right: "-1.5rem" }, rotation: 4, fadeEdge: "right", variant: 2 },
+];
