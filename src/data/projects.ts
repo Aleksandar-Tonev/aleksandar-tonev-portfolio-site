@@ -53,6 +53,8 @@ export interface Project {
   purpose: string;
   images: ProjectImage[];
   alt: string;
+  /** Fill the frame (crop edges) instead of fitting the whole picture. */
+  fill?: boolean;
   /** Optional video; images[0] is its cover picture. Plays only in the overlay. */
   video?: string;
   year?: number;
@@ -104,7 +106,7 @@ export const projects: Project[] = [
   withImage(ph("c2", "09", "C", "16:9", "Graphic Design"), "Logo mock-up", w9.url),
   withImage(ph("c3", "10", "C", "9:16", "Graphic Design"), "Business card", w10.url),
   { ...withImage(ph("d1", "11", "D", "16:9", "AI Visual Content"), "Motion video", w11.url), video: v11.url },
-  { ...withImage(ph("d2", "12", "D", "16:9", "AI Visual Content"), "Architectural clip", w12.url), video: v12.url },
+  { ...withImage(ph("d2", "12", "D", "16:9", "AI Visual Content"), "Architectural clip", w12.url), video: v12.url, fill: true },
   { ...withImage(ph("d3", "13", "D", "9:16", "AI Visual Content"), "Cosmic clip", w13.url), video: v13.url },
 ];
 
