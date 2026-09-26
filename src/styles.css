@@ -299,3 +299,36 @@ body { overflow-x: clip; }
   .portrait-color { transition: opacity 150ms linear; clip-path: none !important; opacity: 0; }
   .portrait-color[data-on="true"] { opacity: 1; }
 }
+
+/* Static project thumbnails — "+" affordance, hover/focus/tap feedback */
+.thumb > img { transition: transform 280ms ease-out; }
+.thumb::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--foreground); opacity: 0; transition: opacity 280ms ease-out;
+}
+.thumb-plus {
+  position: absolute; top: 0; right: 0; z-index: 1;
+  display: grid; place-items: center; width: 44px; height: 44px;
+  font-family: var(--font-mono, monospace); font-size: 1.1rem; line-height: 1;
+  color: var(--background);
+}
+.thumb-plus::before {
+  content: ""; position: absolute; inset: 10px; z-index: -1;
+  background: var(--accent); opacity: 0.85; transition: opacity 280ms ease-out;
+}
+@media (hover: hover) {
+  .group:hover .thumb > img, .group:focus-visible .thumb > img { transform: scale(1.015); }
+  .group:hover .thumb::after, .group:focus-visible .thumb::after { opacity: 0.08; }
+  .group:hover .thumb-plus::before, .group:focus-visible .thumb-plus::before { opacity: 1; }
+}
+.group:active .thumb > img { transform: scale(1.01); transition-duration: 140ms; }
+.group:active .thumb::after { opacity: 0.08; transition-duration: 140ms; }
+@media (prefers-reduced-motion: reduce) {
+  .thumb > img, .group:hover .thumb > img, .group:focus-visible .thumb > img, .group:active .thumb > img { transform: none; }
+}
+
+@keyframes overlay-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.animate-overlay-in { animation: overlay-in 400ms ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-overlay-in { animation: fade 150ms ease-out both; }
+}

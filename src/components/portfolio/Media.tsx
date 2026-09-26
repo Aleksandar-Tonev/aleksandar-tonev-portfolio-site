@@ -10,6 +10,7 @@ export function Media({
   ratio,
   eager,
   playable,
+  thumb,
 }: {
   project: Project;
   /** Frame ratio, e.g. "4/5". */
@@ -17,6 +18,8 @@ export function Media({
   eager?: boolean;
   /** Show the project's video player (overlay only). */
   playable?: boolean;
+  /** Static carousel thumbnail: "+" affordance and hover/tap feedback. */
+  thumb?: boolean;
 }) {
   const [fw, fh] = ratio.split("/").map(Number) as [number, number];
   const pr = ratioValue(project.aspectRatio);
@@ -27,7 +30,7 @@ export function Media({
   return (
     <div className="relative flex w-full items-start" style={{ aspectRatio: ratio.replace("/", " / ") }}>
       <div
-        className="relative overflow-hidden bg-muted"
+        className={`relative overflow-hidden bg-muted ${thumb ? "thumb" : ""}`}
         style={{
           aspectRatio: cssRatio,
           ...(widthLimited ? { width: "100%" } : { height: "100%" }),
@@ -64,6 +67,7 @@ export function Media({
             <span aria-hidden className="self-end">{project.aspectRatio}</span>
           </div>
         )}
+        {thumb && <span aria-hidden className="thumb-plus">+</span>}
       </div>
     </div>
   );
