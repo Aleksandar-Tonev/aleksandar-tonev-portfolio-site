@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { ProjectDialog } from "@/components/portfolio/ProjectDialog";
 import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
+import { AboutPortrait } from "@/components/portfolio/AboutPortrait";
 import { ResumeSection } from "@/components/portfolio/ResumeSection";
 
 const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content";
@@ -142,13 +143,7 @@ function Home() {
           <section id="about" aria-labelledby="about-h" className="grid scroll-mt-16 grid-cols-12 gap-5 border-t border-foreground py-20 md:py-28">
             <h2 id="about-h" className="col-span-12 font-display text-4xl uppercase md:col-span-4 md:text-6xl">About</h2>
             <div className="col-span-12 md:col-span-4">
-              {site.portrait ? (
-                <img src={site.portrait} alt="Portrait of Aleksandar Tonev" className="aspect-[4/5] w-full object-cover" />
-              ) : (
-                <div className="flex aspect-[4/5] w-full items-end border border-dashed border-muted-foreground p-4 font-mono text-[11px] uppercase tracking-wider text-foreground/70">
-                  Reserved for portrait — to be supplied
-                </div>
-              )}
+              <AboutPortrait />
             </div>
             <div className="col-span-12 space-y-5 text-base leading-relaxed md:col-span-4">
               {site.about.map((t) => <p key={t}>{t}</p>)}
