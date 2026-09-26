@@ -10,7 +10,7 @@ export function ResumeSection() {
     if (!el || typeof IntersectionObserver === "undefined") return setInView(true);
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           setInView(true);
           io.disconnect();
         }

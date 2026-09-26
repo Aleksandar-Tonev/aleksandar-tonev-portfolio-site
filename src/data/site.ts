@@ -19,7 +19,7 @@ export const site = {
 /** RÉSUMÉ SECTION — edit copy here. PDF lives in public/documents/. */
 export const resume = {
   label: "Résumé / Experience",
-  statement: ["15+ years in", "design & production"],
+  statement: ["15+ years in", "design & production"] as const,
   paragraph:
     "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted image and video content.",
   signals: ["Graphic design & prepress", "AI-assisted visual content", "MSc + BSc in design"],
