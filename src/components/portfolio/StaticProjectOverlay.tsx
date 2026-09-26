@@ -49,18 +49,6 @@ export function StaticProjectOverlay({
     };
   }, [onClose]);
 
-  // Browser back closes the overlay.
-  useEffect(() => {
-    history.pushState({ spo: true }, "");
-    let popped = false;
-    const onPop = () => { popped = true; onClose(); };
-    window.addEventListener("popstate", onPop);
-    return () => {
-      window.removeEventListener("popstate", onPop);
-      if (!popped && history.state?.spo) history.back();
-    };
-  }, [onClose]);
-
   // New project: reset scroll, replay short content transition.
   useEffect(() => {
     ref.current?.scrollTo(0, 0);
