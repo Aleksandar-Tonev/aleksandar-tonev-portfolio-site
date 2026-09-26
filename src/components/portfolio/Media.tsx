@@ -50,7 +50,7 @@ export function Media({
             height={img.height}
             alt={project.alt}
             loading={eager ? "eager" : "lazy"}
-            className="absolute inset-0 size-full object-contain"
+            className={`absolute inset-0 size-full ${project.fill ? "object-cover" : "object-contain"}`}
           />
         ) : (
           <div
