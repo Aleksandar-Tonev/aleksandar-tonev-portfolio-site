@@ -290,10 +290,12 @@ body { overflow-x: clip; }
 
 /* About portrait reveal */
 .portrait-color { transition: clip-path 550ms ease-in-out; filter: drop-shadow(0 0 0 transparent); will-change: clip-path; }
+.portrait-line { transition: transform 550ms ease-in-out; will-change: transform; }
 .portrait-ctl { background: rgb(20 20 18 / 0.6); color: #fff; backdrop-filter: blur(6px); }
 .portrait:focus-visible { outline: none; }
 .portrait:focus-visible .portrait-ctl { outline: 2px solid var(--color-accent, #D85B3F); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
+  .portrait-line { transition: none !important; }
   .portrait-color { transition: opacity 150ms linear; clip-path: none !important; opacity: 0; }
   .portrait-color[data-on="true"] { opacity: 1; }
 }
