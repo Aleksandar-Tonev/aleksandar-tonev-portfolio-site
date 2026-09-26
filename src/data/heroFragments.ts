@@ -21,3 +21,14 @@ export const heroFragments: HeroFragment[] = [
   { id: "f4", src: "/images/hero/fragment-4.svg", size: "large-1", position: { bottom: "4%", left: "-8%" }, rotation: -14, triggerZone: "bottom-left", fadeEdge: "left", enter: ["10px", "0px"] },
   { id: "f5", src: "/images/hero/fragment-5.svg", size: "large-2", position: { bottom: "-12%", right: "-6%" }, rotation: 0, triggerZone: "bottom-right", fadeEdge: "right", enter: ["-10px", "10px"], showOnMobile: true },
 ];
+
+// Timed sequence (plays once, no loop). Consecutive states share a fragment so
+// there is never a blank frame. ~9 steps x 870ms ≈ 8s.
+export const heroSequence = {
+  holdMs: 750,
+  blinkMs: 120,
+  desktop: [["f2"], ["f2", "f4"], ["f4"], ["f4", "f3"], ["f3", "f5"], ["f5", "f1"], ["f1", "f4"], ["f4", "f2"], ["f2", "f5"]],
+  desktopFinal: ["f2", "f4", "f5"],
+  mobile: [["f5"], ["f5", "f2"], ["f2"], ["f2", "f5"], ["f5"], ["f5", "f2"], ["f2"], ["f2", "f5"], ["f5"]],
+  mobileFinal: ["f2", "f5"],
+} satisfies Record<string, unknown>;
