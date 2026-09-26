@@ -15,15 +15,23 @@ A single-page editorial portfolio homepage built to the uploaded brief: confiden
 3. **Selected Work** — one unified composition of four independent carousel groups (A, B, C, D) with varied card proportions and deliberate vertical offsets. No category split, no uniform grid. Group A can show three cards on wide screens.
 4. **Project overlay** — clicking a card opens a compact overlay on the same page with title, short description, purpose and metadata; closes with the button or Escape.
 5. **About** — concise text on graphic design, prepress and production, plus AI visual content. A clearly marked, correctly proportioned space reserved for your real photograph.
-6. **Contact / Footer** — short invitation, email `aleksandar.hristov.tonev@gmail.com`, minimal footer with your name and the current year. No invented profiles.
+6. **Contact / Footer** — short invitation, email `aleksandar.hristov.tonev@gmail.com`, LinkedIn `https://linkedin.com/in/aleksandar-tonev`, minimal footer with your name and the current year.
 
 ## Carousels
 
-- Each group has its own Previous / Next and position indicator; using one never moves another.
-- No autoplay. Short transitions (around 500 ms) on movement and fade only, no big card flights.
-- Works with mouse, keyboard and touch; no layout jumps when images change; repeated clicks during a transition handled cleanly.
-- Motion is reduced or removed when the visitor's system asks for reduced motion.
-- Opening and closing the overlay leaves every group exactly where it was.
+- Each group keeps its own state and has its own Previous / Next buttons and position indicator. Using one group never moves another.
+- Carousel A: three fixed editorial slots on wide desktop. Each slot has a set vertical offset that stays put while you navigate. Previous / Next loop around, and the buttons are locked until each transition finishes.
+- Tablet shows two cards where needed and mobile shows one main card. Nothing turns into a uniform slider or card grid.
+- No autoplay. Transitions are short (about 500 ms) and use only movement and fading.
+- Works with mouse, keyboard and touch. Placeholder media has fixed proportions, so nothing jumps around.
+- Motion is removed when the visitor's system asks for reduced motion.
+
+## Overlay
+
+- Built as a proper accessible dialog. Keyboard focus stays inside it while it is open.
+- Closes with the close button, the Escape key, or a click on the dimmed background.
+- The page behind it can't be clicked or scrolled while it is open.
+- On close, focus goes back to the card that opened it, and every carousel stays exactly where it was.
 
 ## Content
 
@@ -42,6 +50,7 @@ A single-page editorial portfolio homepage built to the uploaded brief: confiden
 - Homepage replaces the placeholder at `src/routes/index.tsx`, with section and carousel components under `src/components/` and project data in `src/data/projects.ts`.
 - Page-specific title, description and social preview text set on the homepage route.
 
-## On delivery I'll tell you
+## Checks and delivery
 
-Which files were created, where to drop real projects and images, where to edit copy and contact details, and exactly what is still placeholder.
+- Check the build and the browser console. Test the layout at 1440, 768 and 390 px, each carousel on its own, the overlay's focus and Escape behaviour, and reduced motion.
+- Then report: the exact files created or changed, where to edit projects, images, portrait, copy, email and links, and a full list of what is still placeholder.
