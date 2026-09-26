@@ -200,6 +200,30 @@
   &:hover { text-decoration-color: var(--color-accent); }
 }
 
+/* Résumé section */
+.resume-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-height: 3rem; padding: 0 1.5rem; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em;
+  transition: background-color 200ms, color 200ms, border-color 200ms;
+}
+.resume-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.resume-btn-primary { background: var(--color-background); color: var(--color-foreground); }
+.resume-btn-primary:hover { background: var(--color-accent); color: var(--color-background); }
+.resume-btn-secondary { border: 1px solid color-mix(in oklab, var(--color-background) 45%, transparent); color: var(--color-background); }
+.resume-btn-secondary:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.resume-arrow { display: inline-block; transition: transform 200ms; }
+.resume-btn-primary:hover .resume-arrow { transform: translate(2px, -2px); }
+.resume-btn-secondary:hover .resume-arrow { transform: translateY(2px); }
+@keyframes resume-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.resume[data-in="false"] .resume-reveal, .resume[data-in="false"] .resume-signal { opacity: 0; }
+.resume[data-in="true"] .resume-reveal { animation: resume-up 500ms ease-out both; }
+.resume[data-in="true"] .resume-signal { animation: resume-up 400ms ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .resume[data-in] .resume-reveal, .resume[data-in] .resume-signal { opacity: 1; animation: none; }
+  .resume-arrow { transform: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
