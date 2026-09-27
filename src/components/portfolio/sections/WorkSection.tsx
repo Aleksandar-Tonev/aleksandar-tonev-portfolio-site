@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
-import { projectGroups, type Project } from "@/data/projects";
+import { projectGroups, projects, type Project } from "@/data/projects";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
 import { SectionNumber } from "@/components/portfolio/SectionHeading";
@@ -37,19 +37,46 @@ export function WorkSection() {
     return () => { if (h) h.inert = false; delete root.dataset["overlay"]; };
   }, [open]);
 
+  const restoreFocus = useCallback(() => {
+    requestAnimationFrame(() => {
+      const t = trigger.current;
+      if (t?.isConnected) t.focus({ preventScroll: true });
+      else if (headingId.current) document.getElementById(headingId.current)?.focus({ preventScroll: true });
+    });
+  }, []);
+
   const openProject = useCallback((p: Project, el: HTMLElement) => {
     trigger.current = el;
     headingId.current = el.closest("section")?.getAttribute("aria-labelledby") ?? null;
+    // One history entry per open overlay (same URL), so Back closes it.
+    history.pushState({ ...(history.state ?? {}), tvOverlay: p.id }, "", window.location.href);
+    setOpen(p);
+  }, []);
+  const navigate = useCallback((p: Project) => {
+    if ((history.state as { tvOverlay?: string } | null)?.tvOverlay)
+      history.replaceState({ ...history.state, tvOverlay: p.id }, "", window.location.href);
     setOpen(p);
   }, []);
   const close = useCallback(() => {
+    if ((history.state as { tvOverlay?: string } | null)?.tvOverlay) { history.back(); return; }
     setOpen(null);
-    requestAnimationFrame(() => {
-      const t = trigger.current;
-      if (t?.isConnected) t.focus();
-      else if (headingId.current) document.getElementById(headingId.current)?.focus();
-    });
-  }, []);
+    restoreFocus();
+  }, [restoreFocus]);
+
+  // Back closes the overlay; Forward reopens the last project shown.
+  useEffect(() => {
+    const onPop = () => {
+      const id = (history.state as { tvOverlay?: string } | null)?.tvOverlay;
+      const p = id ? projects.find((x) => x.id === id) : undefined;
+      setOpen((cur) => {
+        if (p) return p;
+        if (cur) restoreFocus();
+        return null;
+      });
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [restoreFocus]);
 
   return (
     <>
@@ -74,8 +101,8 @@ export function WorkSection() {
         </section>
       </section>
       {open && (open.video
-        ? <Suspense fallback={null}><VideoProjectOverlay project={open} onNavigate={setOpen} onClose={close} /></Suspense>
-        : <StaticProjectOverlay project={open} onNavigate={setOpen} onClose={close} />)}
+        ? <Suspense fallback={null}><VideoProjectOverlay project={open} onNavigate={navigate} onClose={close} /></Suspense>
+        : <StaticProjectOverlay project={open} onNavigate={navigate} onClose={close} />)}
     </>
   );
 }
