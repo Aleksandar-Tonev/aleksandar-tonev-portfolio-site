@@ -129,7 +129,8 @@ export function CarouselGroup({
     >
       <div className="mb-5 flex items-end justify-between gap-4 border-t border-foreground pt-3">
         <h3 id={headingId} tabIndex={-1} className="font-mono text-xs uppercase tracking-wider outline-none focus-visible:outline-2 focus-visible:outline-accent">
-          <span className="text-accent">{id}</span> — {label}
+          <span className="text-accent">{label.split(" ")[0]}</span>{" "}
+          {label.split(" ").slice(1).join(" ")}
         </h3>
         <p className="hidden" aria-hidden>
           {range} / {pad(n)}
