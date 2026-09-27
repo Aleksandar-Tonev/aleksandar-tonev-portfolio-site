@@ -21,7 +21,7 @@ export const resume = {
   label: "Résumé / Experience",
   statement: ["15+ years in", "design & production"] as const,
   paragraph:
-    "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted image and video content.",
+    "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted content generation and motion.",
   signals: ["Graphic design & prepress", "AI-assisted content generation", "MSc in Habitat and Environmental Design · BSc in Engineering Design"],
   /** Two CV documents, independent of the EN/BG on-page text. Files live in public/cv/. */
   cvFiles: [

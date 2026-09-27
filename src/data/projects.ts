@@ -110,7 +110,7 @@ export const projects: Project[] = [
   withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7.url),
   withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8.url),
   withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9.url),
-  withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Personal Business Card", w10.url),
+  withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Cosmetics Business Card", w10.url),
   { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11.url), video: v11.url, duration: "00:28" },
   { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12.url), video: v12.url, fill: true, duration: "01:27" },
   { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13.url), video: v13.url, duration: "01:08" },
