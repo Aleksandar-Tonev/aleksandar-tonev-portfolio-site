@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
-import { projectGroups, type Project } from "@/data/projects";
+import { projectGroups, projects, type Project } from "@/data/projects";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
 import { SectionNumber } from "@/components/portfolio/SectionHeading";
@@ -101,8 +101,8 @@ export function WorkSection() {
         </section>
       </section>
       {open && (open.video
-        ? <Suspense fallback={null}><VideoProjectOverlay project={open} onNavigate={setOpen} onClose={close} /></Suspense>
-        : <StaticProjectOverlay project={open} onNavigate={setOpen} onClose={close} />)}
+        ? <Suspense fallback={null}><VideoProjectOverlay project={open} onNavigate={navigate} onClose={close} /></Suspense>
+        : <StaticProjectOverlay project={open} onNavigate={navigate} onClose={close} />)}
     </>
   );
 }
