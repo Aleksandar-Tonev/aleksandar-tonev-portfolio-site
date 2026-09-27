@@ -20,8 +20,8 @@ export function HeroSection() {
         <div className="enter-2 col-span-12 mt-8 md:col-span-5 md:col-start-4 lg:col-span-4 lg:col-start-4">
           <p className="text-base leading-relaxed">{site.intro}</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <NavLink to="/work" className="btn-primary">Explore selected work</NavLink>
-            <NavLink to="/contact" className="btn-ghost">Get in touch</NavLink>
+            <NavLink to="work" className="btn-primary">Explore selected work</NavLink>
+            <NavLink to="contact" className="btn-ghost">Get in touch</NavLink>
           </div>
         </div>
       </section>
