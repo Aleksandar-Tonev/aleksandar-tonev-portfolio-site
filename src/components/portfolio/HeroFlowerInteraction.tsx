@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   heroFragmentSrc,
   heroFragmentsDesktop,
@@ -8,27 +8,20 @@ import {
 } from "@/data/heroFragments";
 
 /**
- * Decorative flower fragments behind the Hero. All shown for 1.5s, then each
- * runs its own fixed, looping opacity cycle (CSS) so they never pulse in unison.
- * Paused while the Hero is off screen. Reduced motion: static, fully shown.
+ * Decorative flower fragments behind the Hero. One 5s sequence per visit:
+ * all shown at load, subtle asynchronous blinks, then one-by-one fade-outs
+ * ending at exactly 5s. They stay hidden afterwards. The component remounts
+ * when the visitor returns to Home, which restarts the sequence.
+ * Reduced motion: static for 5s, then one short fade of the whole layer.
  */
 export function HeroFlowerInteraction() {
   const ref = useRef<HTMLDivElement>(null);
-  const [cycling, setCycling] = useState(false);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = window.setTimeout(() => setCycling(true), 1500);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const el = ref.current;
-    const io = el
-      ? new IntersectionObserver(([e]) => setPaused(!e?.isIntersecting), { rootMargin: "200px" })
-      : null;
-    if (el && io) io.observe(el);
-    return () => {
-      window.clearTimeout(t);
-      io?.disconnect();
-    };
+    const t = window.setTimeout(() => el?.classList.add("is-done"), 5000);
+    return () => window.clearTimeout(t);
   }, []);
 
   const render = (list: FragmentInstance[], bp: string) =>
@@ -44,11 +37,7 @@ export function HeroFlowerInteraction() {
     ));
 
   return (
-    <div
-      ref={ref}
-      aria-hidden="true"
-      className={`hero-flower-layer${cycling ? " is-cycling" : ""}${paused ? " is-paused" : ""}`}
-    >
+    <div ref={ref} aria-hidden="true" className="hero-flower-layer">
       {render(heroFragmentsDesktop, "d")}
       {render(heroFragmentsTablet, "t")}
       {render(heroFragmentsMobile, "m")}
