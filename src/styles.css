@@ -458,5 +458,5 @@ html[data-overlay] { overflow: hidden; }
 .contact-min { min-height: calc(100svh - 3.5rem - var(--divider-h)); }
 
 /* Bulgarian: keep standard Cyrillic letterforms (Montserrat's "locl" swaps in cursive-style Bulgarian glyphs). */
-html:lang(bg) body { font-feature-settings: "locl" 0; }
+html:lang(bg) body { font-feature-settings: "locl" 0; -webkit-locale: "ru"; font-language-override: "RUS"; }
 html:lang(bg) h1, html:lang(bg) h2 { overflow-wrap: break-word; hyphens: auto; }
