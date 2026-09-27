@@ -35,9 +35,9 @@ export const resume = {
     },
     {
       id: "bg",
-      label: "Българско CV",
-      previewLabel: "Преглед на CV",
-      downloadLabel: "Свали PDF",
+      label: "Bulgarian CV",
+      previewLabel: "Preview CV",
+      downloadLabel: "Download PDF",
       href: "/cv/aleksandar-tonev-cv-bg.pdf",
       filename: "aleksandar-tonev-cv-bg.pdf",
     },
