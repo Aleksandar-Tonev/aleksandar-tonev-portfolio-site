@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { staticProjects, type Project } from "@/data/projects";
+import { useI18n, useProjectCopy } from "@/lib/i18n";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -16,6 +17,9 @@ export function StaticProjectOverlay({
   const ref = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [swap, setSwap] = useState(0);
+  const { t } = useI18n();
+  const pc = useProjectCopy();
+  const o = t.overlay;
   const total = staticProjects.length;
   const idx = staticProjects.findIndex((p) => p.id === project.id);
   const num = idx + 1;
@@ -59,10 +63,10 @@ export function StaticProjectOverlay({
   const preload = () => [prev, next].forEach((p) => { const s = p.images[0]?.src; if (s) new Image().src = s; });
 
   const facts = [
-    ["Client", project.client],
-    ["Role", project.role],
-    ["Services", project.services?.join(", ")],
-    ["Format", project.format],
+    [o.client, project.client],
+    [o.role, project.role],
+    [o.services, project.services?.join(", ")],
+    [o.format, project.format],
   ].filter(([, v]) => v) as [string, string][];
   const description = project.description?.filter(Boolean) ?? [];
 
@@ -79,7 +83,7 @@ export function StaticProjectOverlay({
           <p className="font-mono text-xs uppercase tracking-wider tabular-nums">
             <span className="text-accent">{pad(num)}</span> / {pad(total)}
           </p>
-          <button ref={closeRef} type="button" onClick={onClose} className="nav-btn" aria-label="Close project">
+          <button ref={closeRef} type="button" onClick={onClose} className="nav-btn" aria-label={o.close}>
             ✕
           </button>
         </div>
@@ -100,7 +104,7 @@ export function StaticProjectOverlay({
                 src={img.src}
                 width={img.width}
                 height={img.height}
-                alt={project.alt}
+                alt={pc(project).alt}
                 onLoad={preload}
                 className="size-full object-contain"
               />
@@ -113,7 +117,7 @@ export function StaticProjectOverlay({
           <div className="grid grid-cols-12 gap-x-5 gap-y-6 border-t border-foreground pt-6">
             <div className="col-span-12 font-mono text-xs uppercase tracking-wider text-muted-foreground lg:col-span-2">
               <p className="text-accent">{pad(num)}</p>
-              <p className="mt-1">{project.category}</p>
+              <p className="mt-1">{pc(project).category}</p>
               {project.year && <p className="mt-1">{project.year}</p>}
               {project.caption && <p className="mt-1 normal-case tracking-normal">{project.caption}</p>}
             </div>
@@ -122,7 +126,7 @@ export function StaticProjectOverlay({
                 id={titleId}
                 className="mt-3 font-display uppercase leading-[0.95] text-[clamp(2rem,11vw,3.25rem)] md:text-[clamp(2.5rem,7vw,4rem)] lg:text-[clamp(3rem,6vw,5rem)]"
               >
-                {project.title}
+                {pc(project).title}
               </h2>
               {project.lead && <p className="mt-6 max-w-[60ch] text-xl leading-snug">{project.lead}</p>}
               {description.map((d, i) => (
@@ -141,25 +145,25 @@ export function StaticProjectOverlay({
             )}
           </div>
 
-          <nav aria-label="Project navigation" className="mt-16 grid gap-4 border-t border-foreground pt-6 sm:grid-cols-2">
+          <nav aria-label={o.projectNav} className="mt-16 grid gap-4 border-t border-foreground pt-6 sm:grid-cols-2">
             <button
               type="button"
               onClick={() => onNavigate(prev)}
               className="group min-h-11 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-              aria-label={`Previous project: ${pad(idx === 0 ? total : idx)} ${prev.title}`}
+              aria-label={`${o.prevProjectAria}: ${pad(idx === 0 ? total : idx)} ${pc(prev).title}`}
             >
-              <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">← Previous project</span>
-              <span className="mt-1 block text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {prev.title}</span>
+              <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">{o.prevProject}</span>
+              <span className="mt-1 block text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {pc(prev).title}</span>
             </button>
             <button
               type="button"
               onClick={() => onNavigate(next)}
               className="group min-h-11 text-left sm:text-right focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-              aria-label={`Next project: ${pad(num === total ? 1 : num + 1)} ${next.title}`}
+              aria-label={`${o.nextProjectAria}: ${pad(num === total ? 1 : num + 1)} ${pc(next).title}`}
             >
-              <span className="block font-mono text-xs uppercase tracking-wider text-accent">Next project →</span>
+              <span className="block font-mono text-xs uppercase tracking-wider text-accent">{o.nextProject}</span>
               <span className="mt-1 block font-display text-2xl uppercase leading-tight group-hover:text-accent">
-                {pad(num === total ? 1 : num + 1)} — {next.title}
+                {pad(num === total ? 1 : num + 1)} — {pc(next).title}
               </span>
             </button>
           </nav>

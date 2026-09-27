@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { resume } from "@/data/site";
+import { useI18n } from "@/lib/i18n";
 import { afterWipe } from "./PageTransition";
 import { SectionNumber } from "./SectionHeading";
 
@@ -11,6 +12,8 @@ export function ResumeSection() {
   const [inView, setInView] = useState(false);
   const [count, setCount] = useState(15);
   const raf = useRef(0);
+  const { t } = useI18n();
+  const r = t.resume;
 
   useEffect(() => {
     const el = ref.current;
@@ -45,7 +48,7 @@ export function ResumeSection() {
     return () => { io.disconnect(); cancelAnimationFrame(raf.current); };
   }, []);
 
-  const rest = resume.statement[0].split(" ").slice(1).join(" ");
+  const rest = r.statement[0].split(" ").slice(1).join(" ");
 
   return (
     <section
@@ -60,26 +63,26 @@ export function ResumeSection() {
         <div className="enter col-span-12 lg:col-span-7">
           <SectionNumber number="03" tone="resume" />
           <p className="mt-4 font-mono text-xs uppercase tracking-wider text-background/70">
-            <span className="text-accent" aria-hidden="true">■</span> {resume.label}
+            <span className="text-accent" aria-hidden="true">■</span> {r.label}
           </p>
           <h2
             id="resume-h"
-            aria-label={`${resume.statement[0]} ${resume.statement[1]}`}
+            aria-label={`${r.statement[0]} ${r.statement[1]}`}
             className="mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
           >
             <span aria-hidden="true">
               <span className="text-accent tabular-nums">{count}<span className="resume-plus" data-on={count === 15 ? "1" : "0"}>+</span></span>{" "}
               <span className="resume-clip"><span className="resume-rv resume-rv-b">{rest}</span></span>
               <br />
-              <span className="resume-clip"><span className="resume-rv resume-rv-c">{resume.statement[1]}</span></span>
+              <span className="resume-clip"><span className="resume-rv resume-rv-c">{r.statement[1]}</span></span>
             </span>
           </h2>
         </div>
 
         <div className="enter-2 col-span-12 md:col-span-8 md:col-start-5 lg:col-span-4 lg:col-start-9 lg:pt-24">
-          <p className="resume-signal text-base leading-relaxed" style={{ animationDelay: "250ms" }}>{resume.paragraph}</p>
+          <p className="resume-signal text-base leading-relaxed" style={{ animationDelay: "250ms" }}>{r.paragraph}</p>
           <ul className="mt-8 border-t border-background/20">
-            {resume.signals.map((s, i) => (
+            {r.signals.map((s, i) => (
               <li
                 key={s}
                 className="resume-signal border-b border-background/20 py-3 font-mono text-xs uppercase tracking-wider text-background/70"
@@ -95,24 +98,24 @@ export function ResumeSection() {
                 key={file.id}
                 className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-background/20 py-4"
               >
-                <span className="font-mono text-xs uppercase tracking-wider text-background/70">{file.label}</span>
+                <span className="font-mono text-xs uppercase tracking-wider text-background/70">{r.files[file.id]}</span>
                 <span className="flex flex-wrap gap-3">
                   <a
                     href={file.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${file.previewLabel} — ${file.label} (opens in a new tab)`}
+                    aria-label={`${r.preview} — ${r.files[file.id]} (${r.newTab})`}
                     className="resume-btn resume-btn-secondary resume-btn-sm"
                   >
-                    {file.previewLabel} <span aria-hidden="true" className="resume-arrow">↗</span>
+                    {r.preview} <span aria-hidden="true" className="resume-arrow">↗</span>
                   </a>
                   <a
                     href={file.href}
                     download={file.filename}
-                    aria-label={`${file.downloadLabel} — ${file.label}`}
+                    aria-label={`${r.download} — ${r.files[file.id]}`}
                     className="resume-btn resume-btn-primary resume-btn-sm"
                   >
-                    {file.downloadLabel} <span aria-hidden="true" className="resume-arrow">↓</span>
+                    {r.download} <span aria-hidden="true" className="resume-arrow">↓</span>
                   </a>
                 </span>
               </li>

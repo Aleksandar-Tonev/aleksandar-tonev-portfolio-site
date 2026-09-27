@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Project } from "@/data/projects";
 import { Media } from "./Media";
+import { useI18n, useProjectCopy } from "@/lib/i18n";
 
 /**
  * Reusable editorial carousel. Owns its own index, direction and animation state.
@@ -53,6 +54,8 @@ export function CarouselGroup({
   onProjectOpen: (project: Project, trigger: HTMLElement) => void;
 }) {
   const n = projects.length;
+  const { t } = useI18n();
+  const pc = useProjectCopy();
   const [currentIndex, setIndex] = useState(0);
   const [direction, setDirection] = useState<Direction>(null);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -137,8 +140,8 @@ export function CarouselGroup({
         </p>
         <p className="sr-only" aria-live="polite">
           {shown > 1
-            ? `Showing projects ${first} to ${last} of ${n} in group ${id}.`
-            : `Showing project ${first} of ${n} in group ${id}.`}
+            ? t.work.showingMany(first, last, n, id)
+            : t.work.showingOne(first, n, id)}
         </p>
       </div>
 
@@ -168,10 +171,10 @@ export function CarouselGroup({
                 <Media project={p} ratio={slot.frame} eager thumb={!p.video} videoThumb={!!p.video} />
                 <span className="mt-3 flex items-baseline justify-between gap-3">
                   <span className="font-display text-lg uppercase leading-tight underline-offset-4 group-hover:text-accent group-hover:underline group-focus-visible:text-accent">
-                    {p.title}
+                    {pc(p).title}
                   </span>
                   <span className="shrink-0 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                    {p.category}
+                    {pc(p).category}
                   </span>
                 </span>
               </button>
@@ -193,13 +196,14 @@ export function CarouselGroup({
 }
 
 function ArrowBtn({ dir, disabled, onClick, className = "" }: { dir: "next" | "previous"; disabled: boolean; onClick: () => void; className?: string }) {
+  const { t } = useI18n();
   return (
     <button
       type="button"
       data-dir={dir}
       onClick={onClick}
       disabled={disabled}
-      aria-label={dir === "next" ? "Next project" : "Previous project"}
+      aria-label={dir === "next" ? t.work.next : t.work.prev}
       className={`carousel-arrow ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden >
