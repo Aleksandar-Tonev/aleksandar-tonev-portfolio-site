@@ -11,20 +11,20 @@
  * Placement and offsets are handled by the layout, never stored here.
  */
 
-import w1 from "@/assets/work/work-1.webp.asset.json";
-import w2 from "@/assets/work/work-2.png.asset.json";
-import w3 from "@/assets/work/work-3.webp.asset.json";
-import w4 from "@/assets/work/work-4.webp.asset.json";
-import w5 from "@/assets/work/work-5.webp.asset.json";
-import w6 from "@/assets/work/work-6.webp.asset.json";
-import w7 from "@/assets/work/work-7.webp.asset.json";
-import w8 from "@/assets/work/work-8.webp.asset.json";
-import w9 from "@/assets/work/work-9.webp.asset.json";
-import w10 from "@/assets/work/work-10.webp.asset.json";
-import w11 from "@/assets/work/work-11.webp.asset.json";
-import w12 from "@/assets/work/work-12-v2.webp.asset.json";
-import w13 from "@/assets/work/work-13.webp.asset.json";
-import v11 from "@/assets/work/work-11.mp4.asset.json";
+import w1 from "@/assets/work-media/work-1.webp";
+import w2 from "@/assets/work-media/work-2.png";
+import w3 from "@/assets/work-media/work-3.webp";
+import w4 from "@/assets/work-media/work-4.webp";
+import w5 from "@/assets/work-media/work-5.webp";
+import w6 from "@/assets/work-media/work-6.webp";
+import w7 from "@/assets/work-media/work-7.webp";
+import w8 from "@/assets/work-media/work-8.webp";
+import w9 from "@/assets/work-media/work-9.webp";
+import w10 from "@/assets/work-media/work-10.webp";
+import w11 from "@/assets/work-media/work-11.webp";
+import w12 from "@/assets/work-media/work-12.webp";
+import w13 from "@/assets/work-media/work-13.webp";
+import v11 from "@/assets/work-media/work-11.mp4";
 import v12 from "@/assets/work/work-12.mp4.asset.json";
 import v13 from "@/assets/work/work-13.mp4.asset.json";
 
@@ -101,19 +101,19 @@ const withImage = (p: Project, title: string, src: string): Project => {
 };
 
 export const projects: Project[] = [
-  withImage(ph("a1", "01", "A", "9:16", "Poster Design"), "Hair Salon Poster", w1.url),
-  withImage(ph("a2", "02", "A", "16:9", "Outdoor Advertising"), "Davines — 100% Vitality", w2.url),
-  withImage(ph("a3", "03", "A", "9:16", "Book Cover Design"), "Botyo Bukov Book", w3.url),
-  withImage(ph("a4", "04", "A", "16:9", "Calendar Head Design"), "Aspen Invest Calendar", w4.url),
-  withImage(ph("b1", "05", "B", "16:9", "Institutional Design"), "Bulgarian National Audit Office Calendar", w5.url),
-  withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Dream Catcher", w6.url),
-  withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7.url),
-  withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8.url),
-  withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9.url),
-  withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Cosmetics Business Card", w10.url),
-  { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11.url), video: v11.url, duration: "00:28" },
-  { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12.url), video: v12.url, fill: true, duration: "01:27" },
-  { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13.url), video: v13.url, duration: "01:08" },
+  withImage(ph("a1", "01", "A", "9:16", "Poster Design"), "Hair Salon Poster", w1),
+  withImage(ph("a2", "02", "A", "16:9", "Outdoor Advertising"), "Davines — 100% Vitality", w2),
+  withImage(ph("a3", "03", "A", "9:16", "Book Cover Design"), "Botyo Bukov Book", w3),
+  withImage(ph("a4", "04", "A", "16:9", "Calendar Head Design"), "Aspen Invest Calendar", w4),
+  withImage(ph("b1", "05", "B", "16:9", "Institutional Design"), "Bulgarian National Audit Office Calendar", w5),
+  withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Dream Catcher", w6),
+  withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7),
+  withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8),
+  withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9),
+  withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Cosmetics Business Card", w10),
+  { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11), video: v11, duration: "00:28" },
+  { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12), video: v12.url, fill: true, duration: "01:27" },
+  { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13), video: v13.url, duration: "01:08" },
 ];
 
 export const PROJECT_TOTAL = 13;
