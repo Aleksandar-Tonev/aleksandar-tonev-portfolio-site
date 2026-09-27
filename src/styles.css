@@ -238,6 +238,8 @@
 .resume-arrow { display: inline-block; transition: transform 200ms; }
 .resume-btn-primary:hover .resume-arrow { transform: translate(2px, -2px); }
 .resume-btn-secondary:hover .resume-arrow { transform: translateY(2px); }
+/* Compact action buttons inside the per-language CV rows */
+.resume-btn-sm { min-height: 2.5rem; padding: 0 1rem; }
 @keyframes resume-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 .resume[data-in="false"] .resume-reveal, .resume[data-in="false"] .resume-signal { opacity: 0; }
 .resume[data-in="true"] .resume-reveal { animation: resume-up 500ms ease-out both; }

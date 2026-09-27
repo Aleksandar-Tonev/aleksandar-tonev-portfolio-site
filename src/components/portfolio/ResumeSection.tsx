@@ -89,14 +89,35 @@ export function ResumeSection() {
               </li>
             ))}
           </ul>
-          <div className="resume-signal mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={{ animationDelay: "650ms" }}>
-            <a href={resume.pdf} target="_blank" rel="noopener noreferrer" aria-label="Preview Aleksandar Tonev CV as PDF (opens in a new tab)" className="resume-btn resume-btn-primary">
-              Preview CV <span aria-hidden="true" className="resume-arrow">↗</span>
-            </a>
-            <a href={resume.pdf} download={resume.downloadName} aria-label="Download Aleksandar Tonev CV as PDF" className="resume-btn resume-btn-secondary">
-              Download CV <span aria-hidden="true" className="resume-arrow">↓</span>
-            </a>
-          </div>
+          <ul className="resume-signal mt-10 border-t border-background/20" style={{ animationDelay: "650ms" }}>
+            {resume.cvFiles.map((file) => (
+              <li
+                key={file.id}
+                className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-background/20 py-4"
+              >
+                <span className="font-mono text-xs uppercase tracking-wider text-background/70">{file.label}</span>
+                <span className="flex flex-wrap gap-3">
+                  <a
+                    href={file.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${file.previewLabel} — ${file.label} (opens in a new tab)`}
+                    className="resume-btn resume-btn-secondary resume-btn-sm"
+                  >
+                    {file.previewLabel} <span aria-hidden="true" className="resume-arrow">↗</span>
+                  </a>
+                  <a
+                    href={file.href}
+                    download={file.filename}
+                    aria-label={`${file.downloadLabel} — ${file.label}`}
+                    className="resume-btn resume-btn-primary resume-btn-sm"
+                  >
+                    {file.downloadLabel} <span aria-hidden="true" className="resume-arrow">↓</span>
+                  </a>
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
