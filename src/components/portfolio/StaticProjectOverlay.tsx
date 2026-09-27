@@ -58,10 +58,6 @@ export function StaticProjectOverlay({
   // Preload neighbours after the active image has loaded.
   const preload = () => [prev, next].forEach((p) => { const s = p.images[0]?.src; if (s) new Image().src = s; });
 
-  const meta = [
-    project.category,
-    project.year ? String(project.year) : null,
-  ].filter(Boolean) as string[];
   const facts = [
     ["Client", project.client],
     ["Role", project.role],
@@ -82,7 +78,6 @@ export function StaticProjectOverlay({
         <div className="flex h-14 items-center justify-between gap-4 border-b border-foreground">
           <p className="font-mono text-xs uppercase tracking-wider tabular-nums">
             <span className="text-accent">{pad(num)}</span> / {pad(total)}
-            <span className="ml-4 text-muted-foreground">{project.category}</span>
           </p>
           <button ref={closeRef} type="button" onClick={onClose} className="nav-btn" aria-label="Close project">
             ✕
@@ -93,13 +88,6 @@ export function StaticProjectOverlay({
       <div key={swap} className="animate-fade">
         {/* Visual stage */}
         <section className="relative px-5 pt-8 sm:px-8 lg:px-12 lg:pt-12">
-          {portrait && (
-            <aside className="absolute left-12 top-12 hidden max-w-[14rem] space-y-1 font-mono text-xs uppercase tracking-wider text-muted-foreground lg:block">
-              <p className="text-accent">{pad(num)}</p>
-              {meta.map((m) => <p key={m}>{m}</p>)}
-              {project.caption && <p className="normal-case tracking-normal">{project.caption}</p>}
-            </aside>
-          )}
           <div
             className="mx-auto"
             style={{
@@ -125,10 +113,11 @@ export function StaticProjectOverlay({
           <div className="grid grid-cols-12 gap-x-5 gap-y-6 border-t border-foreground pt-6">
             <div className="col-span-12 font-mono text-xs uppercase tracking-wider text-muted-foreground lg:col-span-2">
               <p className="text-accent">{pad(num)}</p>
-              {meta.map((m) => <p key={m} className="mt-1">{m}</p>)}
+              <p className="mt-1">{project.category}</p>
+              {project.year && <p className="mt-1">{project.year}</p>}
+              {project.caption && <p className="mt-1 normal-case tracking-normal">{project.caption}</p>}
             </div>
             <div className="col-span-12 lg:col-span-6 lg:col-start-3">
-              <p className="font-mono text-xs uppercase tracking-wider text-accent">{project.category}</p>
               <h2
                 id={titleId}
                 className="mt-3 font-display uppercase leading-[0.95] text-[clamp(2rem,11vw,3.25rem)] md:text-[clamp(2.5rem,7vw,4rem)] lg:text-[clamp(3rem,6vw,5rem)]"
