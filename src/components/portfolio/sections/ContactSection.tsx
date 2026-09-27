@@ -1,15 +1,12 @@
 import { site } from "@/data/site";
-import { SectionNumber } from "@/components/portfolio/SectionHeading";
 
 
 
 export function ContactSection() {
   return (
-    <section id="contact" data-section className="flex contact-min flex-col bg-foreground text-background">
+    <section id="contact" data-section aria-labelledby="contact-h" className="flex contact-min flex-col bg-foreground text-background">
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-5 py-16 md:px-10 md:py-24">
-        <SectionNumber number="04" name="Contact" className="enter" />
-        <h2 className="enter mt-4 font-display text-4xl font-normal uppercase md:text-6xl">Contact</h2>
-        <p className="enter-2 mt-8 max-w-4xl font-display text-2xl uppercase leading-tight md:text-4xl">
+        <p className="enter mt-4 max-w-4xl font-display text-4xl uppercase leading-none md:text-7xl">
           Have a project or a role in mind? Let's talk.
         </p>
         <div className="enter-2">

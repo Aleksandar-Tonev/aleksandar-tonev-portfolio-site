@@ -54,7 +54,7 @@ export function WorkSection() {
       <section id="work" data-section inert={open ? true : undefined} className="mx-auto max-w-[1440px] px-5 pb-24 pt-16 md:px-10 md:pt-24">
         <section aria-labelledby="work-h">
           <div className="enter mb-12">
-            <SectionNumber number="01" name="Work" />
+            <SectionNumber number="01" />
             <h2 id="work-h" className="mt-4 font-display text-4xl uppercase md:text-6xl">Selected work</h2>
           </div>
           <div className="enter-2 space-y-24 md:space-y-32">
