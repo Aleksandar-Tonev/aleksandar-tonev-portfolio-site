@@ -4,6 +4,7 @@ import { DefaultVideoLayout, defaultLayoutIcons } from "@vidstack/react/player/l
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
 import { projects, videoProjects, type Project } from "@/data/projects";
+import { useI18n, useProjectCopy } from "@/lib/i18n";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -19,6 +20,9 @@ export default function VideoProjectOverlay({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const { t } = useI18n();
+  const pc = useProjectCopy();
+  const o = t.overlay;
   // Only the thumbnail click that opened the overlay starts playback.
   const [autoId] = useState(project.id);
   const num = projects.findIndex((p) => p.id === project.id) + 1;
@@ -76,7 +80,7 @@ export default function VideoProjectOverlay({
               ref={closeRef}
               type="button"
               onClick={onClose}
-              aria-label="Close video project"
+              aria-label={o.closeVideo}
               className="grid size-11 place-items-center font-mono text-sm hover:text-accent focus-visible:outline-2 focus-visible:outline-accent"
             >
               ✕
@@ -97,7 +101,7 @@ export default function VideoProjectOverlay({
             >
               <MediaPlayer
                 className="vo-player size-full"
-                title={project.title}
+                title={pc(project).title}
                 src={{ src: project.video!, type: "video/mp4" }}
                 autoPlay={project.id === autoId}
                 playsInline
@@ -107,7 +111,7 @@ export default function VideoProjectOverlay({
                 keyShortcuts={{ togglePaused: "k Space", seekBackward: "ArrowLeft", seekForward: "ArrowRight", toggleMuted: "m", toggleFullscreen: "f" }}
               >
                 <MediaProvider>
-                  {poster && <Poster className="vds-poster" src={poster} alt={project.alt} />}
+                  {poster && <Poster className="vds-poster" src={poster} alt={pc(project).alt} />}
                 </MediaProvider>
                 <DefaultVideoLayout icons={defaultLayoutIcons} noScrubGesture />
               </MediaPlayer>
@@ -121,12 +125,12 @@ export default function VideoProjectOverlay({
         <div className="grid grid-cols-12 gap-x-5 gap-y-6">
           <div className="col-span-12 font-mono text-[11px] uppercase tracking-wider text-muted-foreground md:col-span-2">
             <p className="text-foreground">{pad(num)}</p>
-            <p className="mt-2">{project.category}</p>
+            <p className="mt-2">{pc(project).category}</p>
             {project.duration && <p className="mt-2">{project.duration}</p>}
             {project.caption && <p className="mt-2 normal-case tracking-normal">{project.caption}</p>}
           </div>
           <div className="col-span-12 md:col-span-6">
-            <h2 id={titleId} className="mt-3 font-display text-4xl uppercase leading-none md:text-6xl">{project.title}</h2>
+            <h2 id={titleId} className="mt-3 font-display text-4xl uppercase leading-none md:text-6xl">{pc(project).title}</h2>
             {project.lead && <p className="mt-6 max-w-[60ch] text-lg leading-snug">{project.lead}</p>}
             {project.description?.map((d, i) => (
               <p key={i} className="mt-4 max-w-[62ch] leading-relaxed">{d}</p>
@@ -134,22 +138,22 @@ export default function VideoProjectOverlay({
           </div>
           {(project.role || project.services?.length || project.format || project.year || project.client) && (
             <dl className="col-span-12 space-y-4 font-mono text-[11px] uppercase tracking-wider md:col-span-3 md:col-start-10">
-              {project.client && <div><dt className="text-muted-foreground">Client</dt><dd className="mt-1">{project.client}</dd></div>}
-              {project.role && <div><dt className="text-muted-foreground">Role</dt><dd className="mt-1">{project.role}</dd></div>}
-              {project.services?.length ? <div><dt className="text-muted-foreground">Tools</dt><dd className="mt-1">{project.services.join(", ")}</dd></div> : null}
-              {project.format && <div><dt className="text-muted-foreground">Format</dt><dd className="mt-1">{project.format}</dd></div>}
-              {project.year && <div><dt className="text-muted-foreground">Year</dt><dd className="mt-1">{project.year}</dd></div>}
+              {project.client && <div><dt className="text-muted-foreground">{o.client}</dt><dd className="mt-1">{project.client}</dd></div>}
+              {project.role && <div><dt className="text-muted-foreground">{o.role}</dt><dd className="mt-1">{project.role}</dd></div>}
+              {project.services?.length ? <div><dt className="text-muted-foreground">{o.tools}</dt><dd className="mt-1">{project.services.join(", ")}</dd></div> : null}
+              {project.format && <div><dt className="text-muted-foreground">{o.format}</dt><dd className="mt-1">{project.format}</dd></div>}
+              {project.year && <div><dt className="text-muted-foreground">{o.year}</dt><dd className="mt-1">{project.year}</dd></div>}
             </dl>
           )}
         </div>
 
-        <nav aria-label="Video projects" className="mt-16 grid grid-cols-2 gap-5 border-t border-foreground pt-5">
+        <nav aria-label={o.videoNav} className="mt-16 grid grid-cols-2 gap-5 border-t border-foreground pt-5">
           <div>
             {prev && (
               <button type="button" onClick={() => go(prev)} className="group min-h-11 text-left focus-visible:outline-2 focus-visible:outline-accent">
-                <span className="block font-mono text-[11px] uppercase tracking-wider text-muted-foreground">← Previous video</span>
+                <span className="block font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{o.prevVideo}</span>
                 <span className="mt-1 block font-display uppercase group-hover:text-accent">
-                  {pad(projects.indexOf(prev) + 1)} {prev.title}
+                  {pad(projects.indexOf(prev) + 1)} {pc(prev).title}
                 </span>
               </button>
             )}
@@ -157,9 +161,9 @@ export default function VideoProjectOverlay({
           <div className="text-right">
             {next && (
               <button type="button" onClick={() => go(next)} className="group min-h-11 text-right focus-visible:outline-2 focus-visible:outline-accent">
-                <span className="block font-mono text-[11px] uppercase tracking-wider">Next video →</span>
+                <span className="block font-mono text-[11px] uppercase tracking-wider">{o.nextVideo}</span>
                 <span className="mt-1 block font-display text-xl uppercase group-hover:text-accent">
-                  {pad(projects.indexOf(next) + 1)} {next.title}
+                  {pad(projects.indexOf(next) + 1)} {pc(next).title}
                 </span>
               </button>
             )}

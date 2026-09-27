@@ -3,6 +3,7 @@ import { projectGroups, type Project } from "@/data/projects";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
 import { SectionNumber } from "@/components/portfolio/SectionHeading";
+import { useI18n } from "@/lib/i18n";
 const VideoProjectOverlay = lazy(() => import("@/components/portfolio/VideoProjectOverlay"));
 
 
@@ -24,6 +25,7 @@ const slotsD: EditorialSlot[] = [{ frame: "21/9", span: "col-span-12", offsetMd:
 
 export function WorkSection() {
   const [open, setOpen] = useState<Project | null>(null);
+  const { t } = useI18n();
   const trigger = useRef<HTMLElement | null>(null);
   const headingId = useRef<string | null>(null);
 
@@ -55,18 +57,18 @@ export function WorkSection() {
         <section aria-labelledby="work-h">
           <div className="enter mb-12">
             <SectionNumber number="01" />
-            <h2 id="work-h" className="mt-4 font-display text-4xl uppercase md:text-6xl">Selected work</h2>
+            <h2 id="work-h" className="mt-4 font-display text-4xl uppercase md:text-6xl">{t.work.heading}</h2>
           </div>
           <div className="enter-2 space-y-24 md:space-y-32">
-              <CarouselGroup id="A" label="Carousel A" projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />
+              <CarouselGroup id="A" label={t.work.carousels.A} projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />
             <div className="md:ml-[8.33%]">
-              <CarouselGroup id="B" label="Carousel B" projects={projectGroups.B} slots={slotsB} onProjectOpen={openProject} />
+              <CarouselGroup id="B" label={t.work.carousels.B} projects={projectGroups.B} slots={slotsB} onProjectOpen={openProject} />
             </div>
             <div className="md:mr-[16.66%]">
-              <CarouselGroup id="C" label="Carousel C" projects={projectGroups.C} slots={slotsC} onProjectOpen={openProject} />
+              <CarouselGroup id="C" label={t.work.carousels.C} projects={projectGroups.C} slots={slotsC} onProjectOpen={openProject} />
             </div>
             <div className="md:ml-[25%]">
-              <CarouselGroup id="D" label="Carousel D — Video" projects={projectGroups.D} slots={slotsD} onProjectOpen={openProject} />
+              <CarouselGroup id="D" label={t.work.carousels.D} projects={projectGroups.D} slots={slotsD} onProjectOpen={openProject} />
             </div>
           </div>
         </section>

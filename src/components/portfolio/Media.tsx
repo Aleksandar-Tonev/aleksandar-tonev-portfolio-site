@@ -1,4 +1,5 @@
 import { ratioValue, type Project } from "@/data/projects";
+import { useI18n, useProjectCopy } from "@/lib/i18n";
 
 /**
  * Reserved frame (fixed aspect) holding the project's media at its own declared
@@ -24,6 +25,8 @@ export function Media({
   /** Video carousel thumbnail: central play button + duration label. */
   videoThumb?: boolean;
 }) {
+  const { t } = useI18n();
+  const alt = useProjectCopy()(project).alt;
   const [fw, fh] = ratio.split("/").map(Number) as [number, number];
   const pr = ratioValue(project.aspectRatio);
   const widthLimited = pr >= fw / fh;
@@ -46,7 +49,7 @@ export function Media({
             controls
             playsInline
             preload="metadata"
-            aria-label={project.alt}
+            aria-label={alt}
             className="absolute inset-0 size-full bg-foreground object-contain"
           />
         ) : img ? (
@@ -54,18 +57,18 @@ export function Media({
             src={img.src}
             width={img.width}
             height={img.height}
-            alt={project.alt}
+            alt={alt}
             loading={eager ? "eager" : "lazy"}
             className={`absolute inset-0 size-full ${project.fill ? "object-cover" : "object-contain"}`}
           />
         ) : (
           <div
             role="img"
-            aria-label={project.alt}
+            aria-label={alt}
             className="absolute inset-0 flex flex-col justify-between p-3 font-mono text-[11px] uppercase tracking-wider text-foreground/70"
           >
             <span className="flex items-center gap-2">
-              <span className="size-1.5 bg-accent" aria-hidden /> Placeholder
+              <span className="size-1.5 bg-accent" aria-hidden /> {t.work.placeholder}
             </span>
             <span aria-hidden className="self-end">{project.aspectRatio}</span>
           </div>
@@ -73,7 +76,7 @@ export function Media({
         {thumb && <span aria-hidden className="thumb-plus">+</span>}
         {videoThumb && (
           <>
-            <span className="vthumb-play" role="img" aria-label="Play video">
+            <span className="vthumb-play" role="img" aria-label={t.work.playVideo}>
               <svg viewBox="0 0 24 24" aria-hidden width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
             </span>
             {project.duration && <span className="vthumb-dur">{project.duration}</span>}

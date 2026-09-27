@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import type { SectionId } from "./NavLink";
+import { useI18n } from "@/lib/i18n";
 
 type Phase = "idle" | "in" | "out";
 export const SECTIONS: SectionId[] = ["home", "work", "about", "resume", "contact"];
@@ -113,11 +114,12 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 /** Fixed "← HOME" control, shown outside the Hero and hidden while a project overlay is open. */
 function HomeReturn() {
   const { go, active } = usePageTransition();
+  const { t } = useI18n();
   const shown = active !== "home";
   return (
     <a
       href="#home"
-      aria-label="Return to Home"
+      aria-label={t.home.aria}
       className="home-return"
       data-shown={shown ? "1" : "0"}
       tabIndex={shown ? undefined : -1}
@@ -129,7 +131,7 @@ function HomeReturn() {
       }}
     >
       <span aria-hidden="true" className="home-return-arrow">←</span>
-      <span className="home-return-label">Home</span>
+      <span className="home-return-label">{t.home.label}</span>
     </a>
   );
 }

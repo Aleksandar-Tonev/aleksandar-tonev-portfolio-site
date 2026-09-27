@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import { PageTransitionProvider } from "../components/portfolio/PageTransition";
 import { SiteHeader } from "../components/portfolio/SiteHeader";
+import { LanguageProvider, useI18n } from "../lib/i18n";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -123,11 +124,18 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <PageTransitionProvider>
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:p-2">Skip to content</a>
-        <SiteHeader />
-        <Outlet />
-      </PageTransitionProvider>
+      <LanguageProvider>
+        <PageTransitionProvider>
+          <SkipLink />
+          <SiteHeader />
+          <Outlet />
+        </PageTransitionProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
+}
+
+function SkipLink() {
+  const { t } = useI18n();
+  return <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:p-2">{t.skip}</a>;
 }
