@@ -23,8 +23,25 @@ export const resume = {
   paragraph:
     "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted image and video content.",
   signals: ["Graphic design & prepress", "AI-assisted content generation", "MSc in Habitat and Environmental Design · BSc in Engineering Design"],
-  pdf: "/documents/Aleksandar-Tonev-CV.pdf",
-  downloadName: "Aleksandar-Tonev-CV.pdf",
+  /** Two CV documents, independent of the EN/BG on-page text. Files live in public/cv/. */
+  cvFiles: [
+    {
+      id: "en",
+      label: "English CV",
+      previewLabel: "Preview CV",
+      downloadLabel: "Download PDF",
+      href: "/cv/aleksandar-tonev-cv-en.pdf",
+      filename: "aleksandar-tonev-cv-en.pdf",
+    },
+    {
+      id: "bg",
+      label: "Българско CV",
+      previewLabel: "Преглед на CV",
+      downloadLabel: "Свали PDF",
+      href: "/cv/aleksandar-tonev-cv-bg.pdf",
+      filename: "aleksandar-tonev-cv-bg.pdf",
+    },
+  ] as const,
 };
 
 /** RÉSUMÉ PAGE DETAIL — taken from the CV PDF. */
