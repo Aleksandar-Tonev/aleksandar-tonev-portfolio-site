@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { resume } from "@/data/site";
 import { afterWipe } from "./PageTransition";
+import { SectionNumber } from "./SectionHeading";
 
 const COUNT_MS = 700;
 
@@ -57,7 +58,8 @@ export function ResumeSection() {
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-x-5 gap-y-10 px-5 py-20 md:px-10 md:py-28">
         <div className="enter col-span-12 lg:col-span-7">
-          <p className="font-mono text-xs uppercase tracking-wider text-background/70">
+          <SectionNumber number="03" name="Resume" />
+          <p className="mt-4 font-mono text-xs uppercase tracking-wider text-background/70">
             <span className="text-accent" aria-hidden="true">■</span> {resume.label}
           </p>
           <h2

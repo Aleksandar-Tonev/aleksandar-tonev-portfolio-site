@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react"
 import { projectGroups, type Project } from "@/data/projects";
 import { CarouselGroup, type EditorialSlot } from "@/components/portfolio/CarouselGroup";
 import { StaticProjectOverlay } from "@/components/portfolio/StaticProjectOverlay";
+import { SectionNumber } from "@/components/portfolio/SectionHeading";
 const VideoProjectOverlay = lazy(() => import("@/components/portfolio/VideoProjectOverlay"));
 
 
@@ -52,8 +53,9 @@ export function WorkSection() {
     <>
       <section id="work" data-section inert={open ? true : undefined} className="mx-auto max-w-[1440px] px-5 pb-24 pt-16 md:px-10 md:pt-24">
         <section aria-labelledby="work-h">
-          <div className="enter mb-12 flex items-baseline justify-between">
-            <h2 id="work-h" className="font-display text-4xl uppercase md:text-6xl">Selected work</h2>
+          <div className="enter mb-12">
+            <SectionNumber number="01" name="Work" />
+            <h2 id="work-h" className="mt-4 font-display text-4xl uppercase md:text-6xl">Selected work</h2>
           </div>
           <div className="enter-2 space-y-24 md:space-y-32">
               <CarouselGroup id="A" label="Carousel A" projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />

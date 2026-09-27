@@ -9,7 +9,7 @@ export function ContactDivider() {
   return (
     <div id="contact-divider" aria-hidden="true" className="bg-background">
       <div className="mx-auto flex max-w-[1440px] items-center gap-5 px-5 md:px-10" style={{ height: "var(--divider-h)" }} data-x="">
-        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">04 / Contact</span>
+        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Contact</span>
         <span className="h-px flex-1 bg-accent" />
       </div>
     </div>
