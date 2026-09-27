@@ -56,15 +56,15 @@ export function WorkSection() {
             <h2 id="work-h" className="font-display text-4xl uppercase md:text-6xl">Selected work</h2>
           </div>
           <div className="enter-2 space-y-24 md:space-y-32">
-              <CarouselGroup id="A" label="Карусел A" projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />
+              <CarouselGroup id="A" label="Carousel A" projects={projectGroups.A} slots={slotsA} onProjectOpen={openProject} />
             <div className="md:ml-[8.33%]">
-              <CarouselGroup id="B" label="Карусел B" projects={projectGroups.B} slots={slotsB} onProjectOpen={openProject} />
+              <CarouselGroup id="B" label="Carousel B" projects={projectGroups.B} slots={slotsB} onProjectOpen={openProject} />
             </div>
             <div className="md:mr-[16.66%]">
-              <CarouselGroup id="C" label="Карусел C" projects={projectGroups.C} slots={slotsC} onProjectOpen={openProject} />
+              <CarouselGroup id="C" label="Carousel C" projects={projectGroups.C} slots={slotsC} onProjectOpen={openProject} />
             </div>
             <div className="md:ml-[25%]">
-              <CarouselGroup id="D" label="Карусел D" projects={projectGroups.D} slots={slotsD} onProjectOpen={openProject} />
+              <CarouselGroup id="D" label="Carousel D — Video" projects={projectGroups.D} slots={slotsD} onProjectOpen={openProject} />
             </div>
           </div>
         </section>
