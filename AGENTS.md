@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Portfolio content lives in src/data (projects.ts, site.ts), separate from components in src/components/portfolio — so copy and projects can be swapped without touching layout.
+- Main destinations (/, /work, /resume, /about, /contact) are separate routes; all main navigation goes through NavLink + PageTransitionProvider (one wipe layer in __root) — no scroll-to-section navigation.

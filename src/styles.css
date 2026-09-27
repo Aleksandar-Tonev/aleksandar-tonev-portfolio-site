@@ -159,7 +159,7 @@
   * {
     border-color: var(--color-border);
   }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -388,3 +388,27 @@ body { overflow-x: clip; }
 /* Video overlay */
 .vo-player { --media-brand: #fff; --video-brand: var(--accent); --media-slider-track-fill-bg: var(--accent); --video-border-radius: 0; --video-border: none; }
 .vo-player video { object-fit: contain; }
+
+/* Editorial page transition — one fixed layer above everything */
+.wipe { position: fixed; inset: 0; z-index: 200; pointer-events: none; overflow: hidden; }
+.wipe-panel {
+  position: absolute; inset: 0; background: var(--color-foreground);
+  transform: translateX(-102%);
+  transition: transform var(--wipe-half, 350ms) cubic-bezier(0.65, 0, 0.35, 1);
+}
+.wipe-panel::after { content: ""; position: absolute; top: 0; bottom: 0; right: -2px; width: 2px; background: var(--color-accent); }
+.wipe[data-phase="idle"] .wipe-panel { transition: none; }
+.wipe[data-phase="in"] .wipe-panel, .wipe[data-phase="cover"] .wipe-panel { transform: translateX(0); }
+.wipe[data-phase="cover"] .wipe-panel { transition: none; }
+.wipe[data-phase="in"], .wipe[data-phase="cover"] { pointer-events: auto; }
+
+.enter { animation: resume-up 450ms cubic-bezier(0.65, 0, 0.35, 1) both; }
+.enter-2 { animation: resume-up 450ms cubic-bezier(0.65, 0, 0.35, 1) 80ms both; }
+html[data-wiping] .enter { animation-delay: var(--wipe-half, 350ms); }
+html[data-wiping] .enter-2 { animation-delay: calc(var(--wipe-half, 350ms) + 80ms); }
+
+.nav-link { position: relative; }
+.nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease; }
+.nav-link[aria-current="page"] { color: var(--color-accent); }
+.nav-link[aria-current="page"]::after, .nav-link:hover::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .enter, .enter-2 { animation: none; } }
