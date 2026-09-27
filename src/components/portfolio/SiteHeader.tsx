@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { NavLink, type MainPath } from "./NavLink";
+import { NavLink, type SectionId } from "./NavLink";
 
-const links: [string, MainPath][] = [["Work", "/work"], ["Resume", "/resume"], ["About", "/about"], ["Contact", "/contact"]];
+const links: [string, SectionId][] = [["Work", "work"], ["Resume", "resume"], ["About", "about"], ["Contact", "contact"]];
 
 export function SiteHeader() {
   const [menu, setMenu] = useState(false);
   return (
     <header id="site-header" className="sticky top-0 z-40 border-b border-foreground/15 bg-background">
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 md:px-10">
-        <NavLink to="/" onNavigate={() => setMenu(false)} className="font-display text-base font-bold tracking-wide">ALEKSANDAR TONEV</NavLink>
+        <NavLink to="home" onNavigate={() => setMenu(false)} className="font-display text-base font-bold tracking-wide">ALEKSANDAR TONEV</NavLink>
         <nav aria-label="Main" className="hidden gap-8 md:flex">
           {links.map(([l, h]) => (
             <NavLink key={h} to={h} className="nav-link font-mono text-xs uppercase tracking-wider">{l}</NavLink>
