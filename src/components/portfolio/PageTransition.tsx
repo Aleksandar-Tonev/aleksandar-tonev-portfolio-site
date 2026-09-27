@@ -49,6 +49,8 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
     window.addEventListener("resize", on);
     // Back/Forward between hash entries: instant, no wipe.
     const pop = () => {
+      // Project-overlay history entries are handled by WorkSection; never scroll for them.
+      if (document.documentElement.dataset["overlay"] || (history.state as { tvOverlay?: string } | null)?.tvOverlay) return;
       const h = (window.location.hash.slice(1) || "home") as SectionId;
       if (SECTIONS.includes(h)) jumpTo(h);
     };
