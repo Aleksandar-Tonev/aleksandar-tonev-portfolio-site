@@ -1,14 +1,33 @@
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/data/site";
 import { HeroFlowerInteraction } from "@/components/portfolio/HeroFlowerInteraction";
 import { NavLink } from "@/components/portfolio/NavLink";
 
-
-
 export function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
+  const [run, setRun] = useState(0);
+
+  // Replay the 5s fragment sequence only after the visitor genuinely leaves the Hero (<5% visible) and returns (>40%).
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    let left = false;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e) return;
+        if (e.intersectionRatio < 0.05) left = true;
+        else if (left && e.intersectionRatio > 0.4) { left = false; setRun((r) => r + 1); }
+      },
+      { threshold: [0, 0.05, 0.4, 0.6] },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="home" data-section className="mx-auto max-w-[1440px] px-5 md:px-10">
+    <section ref={ref} id="home" data-section className="mx-auto max-w-[1440px] px-5 md:px-10">
       <section className="relative isolate grid grid-cols-12 gap-5 pb-20 pt-16 md:pb-28 md:pt-24">
-        <HeroFlowerInteraction />
+        <HeroFlowerInteraction key={run} />
         <p className="enter col-span-12 font-mono text-xs uppercase tracking-wider md:col-span-3 md:pt-4">
           <span className="text-accent">■</span> {site.descriptor}
         </p>

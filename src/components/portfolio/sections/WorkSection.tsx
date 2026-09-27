@@ -28,8 +28,10 @@ export function WorkSection() {
 
   useEffect(() => {
     const h = document.getElementById("site-header");
+    const root = document.documentElement;
     if (h) h.inert = !!open;
-    return () => { if (h) h.inert = false; };
+    if (open) root.dataset["overlay"] = "1";
+    return () => { if (h) h.inert = false; delete root.dataset["overlay"]; };
   }, [open]);
 
   const openProject = useCallback((p: Project, el: HTMLElement) => {
