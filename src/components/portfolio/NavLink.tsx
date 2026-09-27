@@ -8,7 +8,7 @@ export function NavLink({ to, className, children, onNavigate }: { to: SectionId
   const { go, active } = usePageTransition();
   return (
     <a
-      href={to === "home" ? "/" : `/${to}`}
+      href={`#${to}`}
       className={className}
       aria-current={active === to ? "location" : undefined}
       onClick={(e) => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, type SectionId } from "./NavLink";
 
-const links: [string, SectionId][] = [["Work", "work"], ["Resume", "resume"], ["About", "about"], ["Contact", "contact"]];
+const links: [string, SectionId][] = [["Work", "work"], ["About", "about"], ["Resume", "resume"], ["Contact", "contact"]];
 
 export function SiteHeader() {
   const [menu, setMenu] = useState(false);
