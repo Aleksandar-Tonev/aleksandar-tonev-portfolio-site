@@ -135,7 +135,7 @@ export function StaticProjectOverlay({
               aria-label={`${o.nextProjectAria}: ${pad(num === total ? 1 : num + 1)} ${pc(next).title}`}
             >
               <span className="block font-mono text-xs uppercase tracking-wider text-accent">{o.nextProject}</span>
-              <span className="ml-auto mt-2 line-clamp-2 block max-w-[14ch] text-balance font-display text-3xl uppercase leading-[1.05] group-hover:text-accent xl:text-4xl">
+              <span className="ml-auto mt-2 line-clamp-2 max-w-[14ch] text-balance font-display text-3xl uppercase leading-[1.05] group-hover:text-accent xl:text-4xl">
                 {pad(num === total ? 1 : num + 1)} — {pc(next).title}
               </span>
             </button>
