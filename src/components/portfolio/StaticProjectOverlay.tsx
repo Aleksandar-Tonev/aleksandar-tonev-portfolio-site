@@ -83,7 +83,7 @@ export function StaticProjectOverlay({
           <p className="font-mono text-xs uppercase tracking-wider tabular-nums">
             <span className="text-accent">{pad(num)}</span> / {pad(total)}
           </p>
-          <p aria-hidden="true" className="hidden text-balance text-center font-display text-2xl uppercase leading-tight lg:line-clamp-2 lg:block">
+          <p aria-hidden="true" className="hidden text-balance text-center font-display text-2xl uppercase leading-tight lg:line-clamp-2">
             {pc(project).title}
           </p>
           <button ref={closeRef} type="button" onClick={onClose} className="nav-btn lg:justify-self-end" aria-label={o.close}>
