@@ -2,13 +2,13 @@
 export const site = {
   name: "Aleksandar Tonev",
   headline: ["Design with intent.", "Built to deliver."],
-  descriptor: "Graphic Design · Prepress · AI Visual Content",
+  descriptor: "Graphic Design · Prepress · AI Visual Content · Motion",
   intro:
-    "Graphic designer with a prepress background. I build visual work that holds up on screen, on press and in space — composed with care, prepared for production.",
+    "Graphic designer with a prepress background. Developing in AI content, video and motion. I build visual work that holds up on screen, on press and in space — composed with care, prepared for production.",
   about: [
     "My foundation is graphic design and prepress: layout, typography, colour and the technical preparation that turns a design into a finished, printed piece.",
-    "Production discipline shapes how I work across formats — from print and identity to interior and spatial projects.",
-    "I also use AI as a tool for visual content: a way to explore and extend ideas, never a substitute for design thinking.",
+    "Production discipline shapes how I work across formats — from print and identity to video and motion projects.",
+    "I also use AI as a tool for content generation: a way to explore and extend ideas, never a substitute for design thinking.",
   ],
   email: "aleksandar.hristov.tonev@gmail.com",
   linkedin: "https://linkedin.com/in/aleksandar-tonev",
@@ -22,7 +22,7 @@ export const resume = {
   statement: ["15+ years in", "design & production"] as const,
   paragraph:
     "Graphic designer with 15+ years of experience across advertising, commercial print, prepress and production-ready visual communication, now extending that foundation into AI-assisted image and video content.",
-  signals: ["Graphic design & prepress", "AI-assisted visual content", "MSc + BSc in design"],
+  signals: ["Graphic design & prepress", "AI-assisted content generation", "MSc + BSc in Habitat and Environmental design"],
   pdf: "/documents/Aleksandar-Tonev-CV.pdf",
   downloadName: "Aleksandar-Tonev-CV.pdf",
 };
