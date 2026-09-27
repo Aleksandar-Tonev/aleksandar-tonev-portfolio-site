@@ -32,7 +32,7 @@ export function HeroSection() {
         <p className="enter col-span-12 font-mono text-xs uppercase tracking-wider md:col-span-3 md:pt-4">
           <span className="text-accent">■</span> {t.hero.descriptor}
         </p>
-        <h1 className="enter col-span-12 font-display text-[clamp(3rem,9vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-tight md:col-span-9">
+        <h1 className="enter col-span-12 font-display text-[clamp(3rem,9vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-tight md:col-span-9 bg-lh">
           {t.hero.headline[0]}
           <br />
           <span className="text-muted-foreground">{t.hero.headline[1]}</span>

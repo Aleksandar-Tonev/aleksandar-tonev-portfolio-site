@@ -68,7 +68,7 @@ export function ResumeSection() {
           <h2
             id="resume-h"
             aria-label={`${r.statement[0]} ${r.statement[1]}`}
-            className="mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
+            className="mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight bg-lh"
           >
             <span aria-hidden="true">
               <span className="text-accent tabular-nums">{count}<span className="resume-plus" data-on={count === 15 ? "1" : "0"}>+</span></span>{" "}
