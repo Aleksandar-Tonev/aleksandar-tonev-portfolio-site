@@ -27,7 +27,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 
   const finish = useCallback(() => {
     setPhase("idle");
-    delete document.documentElement.dataset.wiping;
+    delete document.documentElement.dataset['wiping'];
     busy.current = false;
     window.dispatchEvent(new Event("wipe:done"));
     focusMain();
@@ -48,7 +48,7 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       const h = half();
       const root = document.documentElement;
       root.style.setProperty("--wipe-half", `${h}ms`);
-      root.dataset.wiping = "1";
+      root.dataset['wiping'] = "1";
       setPhase("in");
       await wait(h);
       try {
@@ -70,12 +70,12 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       busy.current = true;
       const h = half();
       document.documentElement.style.setProperty("--wipe-half", `${h}ms`);
-      document.documentElement.dataset.wiping = "1";
+      document.documentElement.dataset['wiping'] = "1";
       setPhase("cover");
     });
     const offResolved = router.subscribe("onResolved", async (e) => {
       if (!busy.current || !e.pathChanged) return;
-      if (document.documentElement.dataset.wiping !== "1") return;
+      if (document.documentElement.dataset['wiping'] !== "1") return;
       // only handle the cover path here; `go` finishes its own
       setPhase((p) => {
         if (p !== "cover") return p;
@@ -100,6 +100,6 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
 
 /** Run fn now, or once the covering wipe has finished revealing the page. */
 export function afterWipe(fn: () => void) {
-  if (typeof document === "undefined" || document.documentElement.dataset.wiping !== "1") return fn();
+  if (typeof document === "undefined" || document.documentElement.dataset['wiping'] !== "1") return fn();
   window.addEventListener("wipe:done", () => fn(), { once: true });
 }
