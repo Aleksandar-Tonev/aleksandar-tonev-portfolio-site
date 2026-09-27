@@ -22,7 +22,7 @@ export function HeroFlowerInteraction() {
     const t = window.setTimeout(() => setCycling(true), 1500);
     const el = ref.current;
     const io = el
-      ? new IntersectionObserver(([e]) => setPaused(!e.isIntersecting), { rootMargin: "200px" })
+      ? new IntersectionObserver(([e]) => setPaused(!e?.isIntersecting), { rootMargin: "200px" })
       : null;
     if (el && io) io.observe(el);
     return () => {
