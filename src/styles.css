@@ -392,7 +392,7 @@ body { overflow-x: clip; }
   color: #fff; background: rgb(15 15 15 / 0.7);
 }
 @media (hover: hover) {
-  .group:hover .vthumb-play, .group:focus-visible .vthumb-play { transform: scale(1.08); background: rgb(15 15 15 / 0.72); }
+  .group:hover .vthumb-play, .group:focus-visible .vthumb-play { transform: scale(1.08); background: rgb(15 15 15 / 0.72); color: var(--accent); }
 }
 @media (prefers-reduced-motion: reduce) {
   .group:hover .vthumb-play, .group:focus-visible .vthumb-play { transform: none; }
