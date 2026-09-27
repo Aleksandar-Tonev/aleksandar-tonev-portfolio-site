@@ -57,15 +57,6 @@ export default function VideoProjectOverlay({
     closeRef.current?.focus();
   };
 
-  const meta = (
-    <dl className="font-mono text-[11px] uppercase tracking-wider text-background/70">
-      <div><dt className="sr-only">Project</dt><dd className="text-background">{pad(num)}</dd></div>
-      <div className="mt-2"><dt className="sr-only">Category</dt><dd>{project.category}</dd></div>
-      {project.duration && <div className="mt-2"><dt className="sr-only">Duration</dt><dd>{project.duration}</dd></div>}
-      {project.caption && <div className="mt-4 normal-case tracking-normal"><dd>{project.caption}</dd></div>}
-    </dl>
-  );
-
   return (
     <div
       ref={ref}
@@ -81,7 +72,6 @@ export default function VideoProjectOverlay({
             <p className="font-mono text-xs tabular-nums">
               <span className="text-accent">{pad(num)}</span> / {pad(total)}
             </p>
-            <p className="truncate font-mono text-[11px] uppercase tracking-wider text-background/70">{project.category}</p>
             <button
               ref={closeRef}
               type="button"
@@ -95,7 +85,7 @@ export default function VideoProjectOverlay({
         </header>
 
         <div className="flex flex-1 items-center justify-center px-5 py-8 md:px-10">
-          <div className={`flex w-full items-center justify-center gap-10 ${portrait ? "flex-col md:flex-row" : ""}`}>
+          <div className="flex w-full items-center justify-center">
             <div
               key={project.id}
               className="animate-overlay-in"
@@ -122,7 +112,6 @@ export default function VideoProjectOverlay({
                 <DefaultVideoLayout icons={defaultLayoutIcons} noScrubGesture />
               </MediaPlayer>
             </div>
-            {portrait && <div className="md:w-40">{meta}</div>}
           </div>
         </div>
       </section>
@@ -134,9 +123,9 @@ export default function VideoProjectOverlay({
             <p className="text-foreground">{pad(num)}</p>
             <p className="mt-2">{project.category}</p>
             {project.duration && <p className="mt-2">{project.duration}</p>}
+            {project.caption && <p className="mt-2 normal-case tracking-normal">{project.caption}</p>}
           </div>
           <div className="col-span-12 md:col-span-6">
-            <p className="font-mono text-[11px] uppercase tracking-wider text-accent">{project.category}</p>
             <h2 id={titleId} className="mt-3 font-display text-4xl uppercase leading-none md:text-6xl">{project.title}</h2>
             {project.lead && <p className="mt-6 max-w-[60ch] text-lg leading-snug">{project.lead}</p>}
             {project.description?.map((d, i) => (
