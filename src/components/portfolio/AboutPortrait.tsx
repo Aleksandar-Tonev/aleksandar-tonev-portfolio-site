@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import duo from "@/assets/about-duotone.webp.asset.json";
-import col from "@/assets/about-color.webp.asset.json";
+import duo from "@/assets/about-duotone.webp";
+import col from "@/assets/about-color.webp";
 import { afterWipe } from "./PageTransition";
 import { useI18n } from "@/lib/i18n";
 
@@ -64,10 +64,10 @@ export function AboutPortrait() {
     >
       {load && (
         <>
-          <img src={duo.url} alt={t.about.portraitAlt} onLoad={() => { setReady(true); afterWipe(runHint); }} className="absolute inset-0 h-full w-full object-cover object-center" />
+          <img src={duo} alt={t.about.portraitAlt} onLoad={() => { setReady(true); afterWipe(runHint); }} className="absolute inset-0 h-full w-full object-cover object-center" />
           {ready && (
             <img
-              src={col.url}
+              src={col}
               alt=""
               aria-hidden="true"
               className="portrait-color absolute inset-0 h-full w-full object-cover object-center"
