@@ -79,11 +79,14 @@ export function StaticProjectOverlay({
       className="fixed inset-0 z-[60] overflow-y-auto bg-background text-foreground animate-overlay-in"
     >
       <header className="sticky top-0 z-10 bg-background px-5 sm:px-8 lg:px-12">
-        <div className="flex h-14 items-center justify-between gap-4 border-b border-foreground">
+        <div className="flex h-14 items-center justify-between gap-4 border-b border-foreground lg:grid lg:h-auto lg:min-h-16 lg:grid-cols-[8rem_minmax(0,1fr)_8rem] lg:py-3">
           <p className="font-mono text-xs uppercase tracking-wider tabular-nums">
             <span className="text-accent">{pad(num)}</span> / {pad(total)}
           </p>
-          <button ref={closeRef} type="button" onClick={onClose} className="nav-btn" aria-label={o.close}>
+          <p aria-hidden="true" className="hidden text-balance text-center font-display text-2xl uppercase leading-tight lg:line-clamp-2 lg:block">
+            {pc(project).title}
+          </p>
+          <button ref={closeRef} type="button" onClick={onClose} className="nav-btn lg:justify-self-end" aria-label={o.close}>
             ✕
           </button>
         </div>
@@ -91,9 +94,10 @@ export function StaticProjectOverlay({
 
       <div key={swap} className="animate-fade">
         {/* Visual stage */}
-        <section className="relative px-5 pt-8 sm:px-8 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10 lg:px-12 lg:pt-12">
-          {/* Desktop only: previous link above the image midpoint */}
+        <section className="relative px-5 pt-8 sm:px-8 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10 lg:px-12 lg:pb-16 lg:pt-12">
+          {/* Desktop only: category at image top, previous link above the image midpoint */}
           <div className="relative hidden lg:block">
+            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{pc(project).category}</p>
             <button
               type="button"
               onClick={() => onNavigate(prev)}
@@ -139,7 +143,7 @@ export function StaticProjectOverlay({
         </section>
 
         {/* Editorial information */}
-        <section className="px-5 pb-12 pt-16 sm:px-8 lg:px-12 lg:pt-24">
+        <section className="px-5 pb-12 pt-16 sm:px-8 lg:hidden">
           <div className="grid grid-cols-12 gap-x-5 gap-y-6 border-t border-foreground pt-6">
             <div className="col-span-12 font-mono text-xs uppercase tracking-wider text-muted-foreground lg:col-span-2">
               <p className="text-accent">{pad(num)}</p>
