@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { resume } from "@/data/site";
+import { afterWipe } from "./PageTransition";
 
-export function ResumeSection() {
+export function ResumeSection({ heading = "h2" }: { heading?: "h1" | "h2" }) {
+  const H = heading;
   const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -11,7 +13,7 @@ export function ResumeSection() {
     const io = new IntersectionObserver(
       ([e]) => {
         if (e?.isIntersecting) {
-          setInView(true);
+          afterWipe(() => setInView(true));
           io.disconnect();
         }
       },
@@ -34,7 +36,7 @@ export function ResumeSection() {
           <p className="font-mono text-xs uppercase tracking-wider text-background/70">
             <span className="text-accent" aria-hidden="true">■</span> {resume.label}
           </p>
-          <h2
+          <H
             id="resume-h"
             className="mt-6 font-display text-[clamp(2.75rem,8vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-tight"
           >
@@ -48,7 +50,7 @@ export function ResumeSection() {
             <span className="resume-clip">
               <span className="resume-rv resume-rv-b">{resume.statement[1]}</span>
             </span>
-          </h2>
+          </H>
         </div>
 
         <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-4 lg:col-start-9 lg:pt-24">
@@ -72,7 +74,7 @@ export function ResumeSection() {
               aria-label="Preview Aleksandar Tonev CV as PDF"
               className="resume-btn resume-btn-primary"
             >
-              View CV <span aria-hidden="true" className="resume-arrow">↗</span>
+              Preview CV <span aria-hidden="true" className="resume-arrow">↗</span>
             </a>
             <a
               href={resume.pdf}
@@ -80,7 +82,7 @@ export function ResumeSection() {
               aria-label="Download Aleksandar Tonev CV as PDF"
               className="resume-btn resume-btn-secondary"
             >
-              Download PDF <span aria-hidden="true" className="resume-arrow">↓</span>
+              Download CV <span aria-hidden="true" className="resume-arrow">↓</span>
             </a>
           </div>
         </div>

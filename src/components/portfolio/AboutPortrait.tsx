@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import duo from "@/assets/about-duotone.webp.asset.json";
 import col from "@/assets/about-color.webp.asset.json";
+import { afterWipe } from "./PageTransition";
 
 /** Diagonal boundary rising from lower-left to upper-right; colour sits below it. y = boundary height at centre. */
 const band = (y: number) => `polygon(0% 100%, 100% 100%, 100% ${y - 10}%, 0% ${y + 10}%)`;
@@ -34,7 +35,7 @@ export function AboutPortrait() {
     let wasIn = false;
     const seen = new IntersectionObserver(([e]) => {
       const isIn = !!e?.isIntersecting;
-      if (isIn && !wasIn) runHint();
+      if (isIn && !wasIn) afterWipe(runHint);
       wasIn = isIn;
     }, { threshold: 0.4 });
     near.observe(el);
@@ -61,7 +62,7 @@ export function AboutPortrait() {
     >
       {load && (
         <>
-          <img src={duo.url} alt="Portrait of Aleksandar Tonev" onLoad={() => { setReady(true); runHint(); }} className="absolute inset-0 h-full w-full object-cover object-center" />
+          <img src={duo.url} alt="Portrait of Aleksandar Tonev" onLoad={() => { setReady(true); afterWipe(runHint); }} className="absolute inset-0 h-full w-full object-cover object-center" />
           {ready && (
             <img
               src={col.url}

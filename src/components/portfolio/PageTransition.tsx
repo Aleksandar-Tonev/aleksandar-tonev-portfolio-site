@@ -97,3 +97,9 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
     </Ctx.Provider>
   );
 }
+
+/** Run fn now, or once the covering wipe has finished revealing the page. */
+export function afterWipe(fn: () => void) {
+  if (typeof document === "undefined" || document.documentElement.dataset.wiping !== "1") return fn();
+  window.addEventListener("wipe:done", () => fn(), { once: true });
+}
