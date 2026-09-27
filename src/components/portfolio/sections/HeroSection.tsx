@@ -29,7 +29,7 @@ export function HeroSection() {
       <section className="relative isolate grid grid-cols-12 gap-5 pb-20 pt-16 md:pb-28 md:pt-24">
         <HeroFlowerInteraction key={run} />
         <p className="enter col-span-12 font-mono text-xs uppercase tracking-wider md:col-span-3 md:pt-4">
-          {site.descriptor}
+          <span className="text-accent">■</span> {site.descriptor}
         </p>
         <h1 className="enter col-span-12 font-display text-[clamp(3rem,9vw,8.5rem)] font-bold uppercase leading-[0.9] tracking-tight md:col-span-9">
           {site.headline[0]}
