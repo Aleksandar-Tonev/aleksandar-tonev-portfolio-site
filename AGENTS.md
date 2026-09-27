@@ -11,3 +11,4 @@
 
 - Portfolio content lives in src/data (projects.ts, site.ts), separate from components in src/components/portfolio — so copy and projects can be swapped without touching layout.
 - Single continuous page (OnePage: home/work/resume/about/contact sections); nav links jump instantly under the editorial wipe, manual scroll never wipes; /work etc. routes render the same page and jump to their section — hybrid navigation requested by the user.
+- Render the four section sequence markers with the shared SectionNumber presentation component so placement and styling remain consistent across the continuous page.

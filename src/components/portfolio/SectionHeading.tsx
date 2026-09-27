@@ -1,11 +1,8 @@
-import type { ReactNode } from "react";
-
-/** Shared section title and its secondary sequence number. */
-export function SectionHeading({ number, id, className = "", children }: { number: string; id?: string; className?: string; children: ReactNode }) {
+/** Shared secondary section marker, placed above each main heading. */
+export function SectionNumber({ number, name, className = "" }: { number: string; name: string; className?: string }) {
   return (
-    <h2 id={id} className={`flex items-baseline gap-3 font-display text-4xl font-normal uppercase md:text-6xl ${className}`}>
-      <span aria-hidden="true" className="shrink-0 font-mono text-xs font-normal opacity-70 md:text-sm">{number} /</span>
-      <span>{children}</span>
-    </h2>
+    <p className={`font-mono text-xs uppercase tracking-wider opacity-70 ${className}`}>
+      <span>{number} / {name}</span>
+    </p>
   );
 }

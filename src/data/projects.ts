@@ -103,8 +103,8 @@ const withImage = (p: Project, title: string, src: string): Project => {
 export const projects: Project[] = [
   withImage(ph("a1", "01", "A", "9:16", "Poster Design"), "Hair Salon Poster", w1.url),
   withImage(ph("a2", "02", "A", "16:9", "Outdoor Advertising"), "Davines — 100% Vitality", w2.url),
-  withImage(ph("a3", "03", "A", "9:16", "Book Design"), "Botyo Bukov Book", w3.url),
-  withImage(ph("a4", "04", "A", "16:9", "Calendar Design"), "Aspen Invest Calendar", w4.url),
+  withImage(ph("a3", "03", "A", "9:16", "Book Cover Design"), "Botyo Bukov Book", w3.url),
+  withImage(ph("a4", "04", "A", "16:9", "Calendar Head Design"), "Aspen Invest Calendar", w4.url),
   withImage(ph("b1", "05", "B", "16:9", "Institutional Design"), "Bulgarian National Audit Office Calendar", w5.url),
   withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Dream Catcher", w6.url),
   withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7.url),
