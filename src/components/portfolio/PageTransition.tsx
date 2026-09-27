@@ -67,7 +67,9 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       jumpTo(to);
       const hash = `#${to}`;
       if (window.location.hash !== hash) history.pushState(null, "", hash);
-      const h = el.querySelector<HTMLElement>("h1, h2");
+      const h = to === "contact"
+        ? document.getElementById("contact-h")
+        : el.querySelector<HTMLElement>("h1, h2");
       if (h) {
         if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1");
         h.focus({ preventScroll: true });
