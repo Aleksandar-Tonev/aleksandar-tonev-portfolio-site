@@ -104,7 +104,7 @@ export function StaticProjectOverlay({
               className="group absolute left-0 top-[42%] max-w-full -translate-y-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               aria-label={`${o.prevProjectAria}: ${pad(idx === 0 ? total : idx)} ${pc(prev).title}`}
             >
-              <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">← {o.prevProject}</span>
+              <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">{o.prevProject}</span>
               <span className="mt-1 block max-w-[22ch] text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {pc(prev).title}</span>
             </button>
           </div>
@@ -134,7 +134,7 @@ export function StaticProjectOverlay({
               className="group max-w-full text-right focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               aria-label={`${o.nextProjectAria}: ${pad(num === total ? 1 : num + 1)} ${pc(next).title}`}
             >
-              <span className="block font-mono text-xs uppercase tracking-wider text-accent">{o.nextProject} →</span>
+              <span className="block font-mono text-xs uppercase tracking-wider text-accent">{o.nextProject}</span>
               <span className="ml-auto mt-2 line-clamp-2 block max-w-[14ch] text-balance font-display text-3xl uppercase leading-[1.05] group-hover:text-accent xl:text-4xl">
                 {pad(num === total ? 1 : num + 1)} — {pc(next).title}
               </span>
