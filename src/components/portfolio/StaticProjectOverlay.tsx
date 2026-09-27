@@ -91,9 +91,21 @@ export function StaticProjectOverlay({
 
       <div key={swap} className="animate-fade">
         {/* Visual stage */}
-        <section className="relative px-5 pt-8 sm:px-8 lg:px-12 lg:pt-12">
+        <section className="relative px-5 pt-8 sm:px-8 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10 lg:px-12 lg:pt-12">
+          {/* Desktop only: previous link above the image midpoint */}
+          <div className="relative hidden lg:block">
+            <button
+              type="button"
+              onClick={() => onNavigate(prev)}
+              className="group absolute left-0 top-[42%] max-w-full -translate-y-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              aria-label={`${o.prevProjectAria}: ${pad(idx === 0 ? total : idx)} ${pc(prev).title}`}
+            >
+              <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">← {o.prevProject}</span>
+              <span className="mt-1 block max-w-[22ch] text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {pc(prev).title}</span>
+            </button>
+          </div>
           <div
-            className="mx-auto"
+            className={`mx-auto ${portrait ? "" : "lg:!w-[min(62vw,calc(76vh*16/9))]"}`}
             style={{
               aspectRatio: portrait ? "9 / 16" : "16 / 9",
               width: portrait ? "min(100%, calc(76vh * 9 / 16))" : "min(100%, 85vw, calc(76vh * 16 / 9))",
@@ -109,6 +121,20 @@ export function StaticProjectOverlay({
                 className="size-full object-contain"
               />
             )}
+          </div>
+          {/* Desktop only: next link, bottom aligned with image bottom */}
+          <div className="hidden lg:flex lg:items-end lg:justify-end">
+            <button
+              type="button"
+              onClick={() => onNavigate(next)}
+              className="group max-w-full text-right focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              aria-label={`${o.nextProjectAria}: ${pad(num === total ? 1 : num + 1)} ${pc(next).title}`}
+            >
+              <span className="block font-mono text-xs uppercase tracking-wider text-accent">{o.nextProject} →</span>
+              <span className="ml-auto mt-2 line-clamp-2 block max-w-[14ch] text-balance font-display text-3xl uppercase leading-[1.05] group-hover:text-accent xl:text-4xl">
+                {pad(num === total ? 1 : num + 1)} — {pc(next).title}
+              </span>
+            </button>
           </div>
         </section>
 
@@ -145,7 +171,7 @@ export function StaticProjectOverlay({
             )}
           </div>
 
-          <nav aria-label={o.projectNav} className="mt-16 grid gap-4 border-t border-foreground pt-6 sm:grid-cols-2">
+          <nav aria-label={o.projectNav} className="mt-16 grid gap-4 border-t border-foreground pt-6 sm:grid-cols-2 lg:hidden">
             <button
               type="button"
               onClick={() => onNavigate(prev)}
