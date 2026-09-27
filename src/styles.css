@@ -381,9 +381,11 @@ body { overflow-x: clip; }
   translate: -50% -50%; color: #fff;
   background: rgb(15 15 15 / 0.55); backdrop-filter: blur(6px);
   box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35);
-  transition: transform 280ms ease-out, background-color 280ms ease-out;
+  transition: transform 280ms ease-out, background-color 280ms ease-out, color 180ms ease-out;
 }
 .vthumb-play svg { margin-left: 3px; }
+/* Pressed state gives immediate feedback on touch (no sticky hover). */
+.group:active .vthumb-play { color: var(--accent); }
 .vthumb-dur {
   position: absolute; right: 8px; bottom: 8px; z-index: 1;
   padding: 2px 6px; font-family: var(--font-mono, monospace); font-size: 11px; letter-spacing: 0.04em;
