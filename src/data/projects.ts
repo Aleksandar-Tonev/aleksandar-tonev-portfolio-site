@@ -25,8 +25,8 @@ import w11 from "@/assets/work-media/work-11.webp";
 import w12 from "@/assets/work-media/work-12.webp";
 import w13 from "@/assets/work-media/work-13.webp";
 import v11 from "@/assets/work-media/work-11.mp4";
-import v12 from "@/assets/work/work-12.mp4.asset.json";
-import v13 from "@/assets/work/work-13.mp4.asset.json";
+const v12 = { url: "/videos/12-архитектурен-клип-16-9-web.mp4" };
+const v13 = { url: "/videos/13-Cosmic-clip-9-16-web.mp4" };
 
 export type Discipline = string;
 
