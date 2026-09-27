@@ -4,7 +4,7 @@ import { site } from "@/data/site";
 
 export function ContactSection() {
   return (
-    <section id="contact" data-section className="flex min-h-[calc(100svh-3.5rem)] flex-col bg-foreground text-background">
+    <section id="contact" data-section className="flex contact-min flex-col bg-foreground text-background">
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-5 py-16 md:px-10 md:py-24">
         <p className="enter font-mono text-xs uppercase tracking-wider opacity-70">Contact</p>
         <h2 className="enter mt-4 max-w-4xl font-display text-4xl uppercase leading-none md:text-7xl">

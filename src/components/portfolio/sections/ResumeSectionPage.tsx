@@ -8,7 +8,7 @@ export function ResumeSectionPage() {
 export function ContactDivider() {
   return (
     <div id="contact-divider" aria-hidden="true" className="bg-background">
-      <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-5 px-5 sm:h-20 md:h-24 md:px-10 lg:h-28">
+      <div className="mx-auto flex max-w-[1440px] items-center gap-5 px-5 md:px-10" style={{ height: "var(--divider-h)" }} data-x="">
         <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">04 / Contact</span>
         <span className="h-px flex-1 bg-accent" />
       </div>

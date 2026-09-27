@@ -447,3 +447,8 @@ html[data-overlay] { overflow: hidden; }
   .home-return-label { opacity: 0.7; color: var(--color-foreground); }
   .home-return:hover .home-return-label, .home-return:focus-visible .home-return-label { opacity: 1; color: var(--color-accent); }
 }
+:root { --divider-h: 3.5rem; }
+@media (min-width: 640px) { :root { --divider-h: 5rem; } }
+@media (min-width: 768px) { :root { --divider-h: 6rem; } }
+@media (min-width: 1024px) { :root { --divider-h: 7rem; } }
+.contact-min { min-height: calc(100svh - 3.5rem - var(--divider-h)); }
