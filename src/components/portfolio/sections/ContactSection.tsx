@@ -8,9 +8,10 @@ export function ContactSection() {
     <section id="contact" data-section className="flex contact-min flex-col bg-foreground text-background">
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col px-5 py-16 md:px-10 md:py-24">
         <SectionNumber number="04" name="Contact" className="enter" />
-        <h2 className="enter mt-4 max-w-4xl font-display text-4xl font-normal uppercase md:text-6xl">
+        <h2 className="enter mt-4 font-display text-4xl font-normal uppercase md:text-6xl">Contact</h2>
+        <p className="enter-2 mt-8 max-w-4xl font-display text-2xl uppercase leading-tight md:text-4xl">
           Have a project or a role in mind? Let's talk.
-        </h2>
+        </p>
         <div className="enter-2">
           <a href={`mailto:${site.email}`} className="link-inverse mt-10 inline-block break-all font-display text-xl md:text-3xl">
             {site.email}
