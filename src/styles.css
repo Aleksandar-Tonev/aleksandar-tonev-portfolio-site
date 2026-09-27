@@ -462,3 +462,4 @@ html:lang(bg) body { font-feature-settings: "locl" 0; -webkit-locale: "ru"; font
 html:lang(bg) h1, html:lang(bg) h2 { overflow-wrap: break-word; hyphens: auto; }
 
 html[lang="bg"] .bg-lh { line-height: 1.125; }
+html[lang="bg"] .bg-lh-hero { line-height: 1.0125; }
