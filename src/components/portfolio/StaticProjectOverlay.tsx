@@ -108,7 +108,9 @@ export function StaticProjectOverlay({
               <span className="mt-1 block max-w-[22ch] text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {pc(prev).title}</span>
             </button>
             {description[0] && (
-              <p className="mt-auto max-w-[36ch] pt-8 text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[0]}</p>
+              <div className="mt-auto max-w-[36ch] pt-8">
+                <p className="border-t border-accent pt-4 text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[0]}</p>
+              </div>
             )}
           </div>
           <div
@@ -132,7 +134,7 @@ export function StaticProjectOverlay({
           {/* Desktop only: next link, bottom aligned with image bottom */}
           <div className="hidden lg:flex lg:flex-col lg:items-end lg:justify-between lg:gap-8">
             {description[1] && (
-              <p className="max-w-[36ch] self-start text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[1]}</p>
+              <p className="max-w-[36ch] self-start border-b border-accent pb-4 text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[1]}</p>
             )}
             <button
               type="button"
