@@ -68,7 +68,7 @@ export function StaticProjectOverlay({
     [o.services, project.services?.join(", ")],
     [o.format, project.format],
   ].filter(([, v]) => v) as [string, string][];
-  const description = project.description?.filter(Boolean) ?? [];
+  const description = pc(project).description;
 
   return (
     <div
@@ -96,8 +96,11 @@ export function StaticProjectOverlay({
         {/* Visual stage */}
         <section className="relative px-5 pt-8 sm:px-8 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-10 lg:px-12 lg:pb-16 lg:pt-12">
           {/* Desktop only: category at image top, previous link above the image midpoint */}
-          <div className="relative hidden lg:block">
+          <div className="relative hidden lg:flex lg:flex-col">
             <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{pc(project).category}</p>
+            {description[0] && (
+              <p className="mt-auto max-w-[36ch] pt-[calc(42%+1.5rem)] text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[0]}</p>
+            )}
             <button
               type="button"
               onClick={() => onNavigate(prev)}
@@ -127,7 +130,10 @@ export function StaticProjectOverlay({
             )}
           </div>
           {/* Desktop only: next link, bottom aligned with image bottom */}
-          <div className="hidden lg:flex lg:items-end lg:justify-end">
+          <div className="hidden lg:flex lg:flex-col lg:items-end lg:justify-between lg:gap-8">
+            {description[1] && (
+              <p className="max-w-[36ch] self-start text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[1]}</p>
+            )}
             <button
               type="button"
               onClick={() => onNavigate(next)}
@@ -159,9 +165,13 @@ export function StaticProjectOverlay({
                 {pc(project).title}
               </h2>
               {project.lead && <p className="mt-6 max-w-[60ch] text-xl leading-snug">{project.lead}</p>}
-              {description.map((d, i) => (
-                <p key={i} className="mt-4 max-w-[62ch] text-sm leading-relaxed">{d}</p>
-              ))}
+              {description.length > 0 && (
+                <div className="mt-5 max-w-[62ch] space-y-3.5">
+                  {description.map((d, i) => (
+                    <p key={i} className="text-left font-sans text-[15px] leading-[1.6] text-foreground sm:text-base">{d}</p>
+                  ))}
+                </div>
+              )}
             </div>
             {facts.length > 0 && (
               <dl className="col-span-12 space-y-4 lg:col-span-3 lg:col-start-10">

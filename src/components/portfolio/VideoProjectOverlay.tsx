@@ -129,15 +129,22 @@ export default function VideoProjectOverlay({
             {project.duration && <p className="mt-2">{project.duration}</p>}
             {project.caption && <p className="mt-2 normal-case tracking-normal">{project.caption}</p>}
           </div>
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-12 md:col-span-4">
             <h2 id={titleId} className="mt-3 font-display text-4xl uppercase leading-none md:text-6xl">{pc(project).title}</h2>
             {project.lead && <p className="mt-6 max-w-[60ch] text-lg leading-snug">{project.lead}</p>}
-            {project.description?.map((d, i) => (
-              <p key={i} className="mt-4 max-w-[62ch] leading-relaxed">{d}</p>
+            {pc(project).description.map((d, i) => (
+              <p key={i} className="mt-5 max-w-[62ch] text-left font-sans text-[15px] leading-[1.6] text-foreground sm:text-base md:hidden">{d}</p>
             ))}
           </div>
+          {pc(project).description.length > 0 && (
+            <div className="hidden md:col-span-5 md:col-start-8 md:mt-3 md:block">
+              {pc(project).description.map((d, i) => (
+                <p key={i} className="max-w-[65ch] text-left font-sans text-base font-normal leading-[1.6] text-foreground">{d}</p>
+              ))}
+            </div>
+          )}
           {(project.role || project.services?.length || project.format || project.year || project.client) && (
-            <dl className="col-span-12 space-y-4 font-mono text-[11px] uppercase tracking-wider md:col-span-3 md:col-start-10">
+            <dl className="col-span-12 space-y-4 font-mono text-[11px] uppercase tracking-wider md:col-span-5 md:col-start-8">
               {project.client && <div><dt className="text-muted-foreground">{o.client}</dt><dd className="mt-1">{project.client}</dd></div>}
               {project.role && <div><dt className="text-muted-foreground">{o.role}</dt><dd className="mt-1">{project.role}</dd></div>}
               {project.services?.length ? <div><dt className="text-muted-foreground">{o.tools}</dt><dd className="mt-1">{project.services.join(", ")}</dd></div> : null}
