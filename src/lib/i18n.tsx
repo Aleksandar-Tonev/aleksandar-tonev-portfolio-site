@@ -26,5 +26,8 @@ export const useI18n = () => useContext(Ctx);
 /** Localized title/category/alt for a project. */
 export function useProjectCopy() {
   const { t } = useI18n();
-  return (p: Project) => t.projects[p.id] ?? { title: p.title, category: p.category, alt: p.alt };
+  return (p: Project): { title: string; category: string; alt: string; description: string[] } => {
+    const c = t.projects[p.id];
+    return c ? { ...c, description: c.description ?? [] } : { title: p.title, category: p.category, alt: p.alt, description: [] };
+  };
 }

@@ -106,7 +106,7 @@ export const projects: Project[] = [
   withImage(ph("a3", "03", "A", "9:16", "Book Cover Design"), "Botyo Bukov Book", w3),
   withImage(ph("a4", "04", "A", "16:9", "Calendar Head Design"), "Aspen Invest Calendar", w4),
   withImage(ph("b1", "05", "B", "16:9", "Institutional Design"), "Bulgarian National Audit Office Calendar", w5),
-  withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Dream Catcher", w6),
+  withImage(ph("b2", "06", "B", "9:16", "Experimental Design"), "Color Geometry Study", w6),
   withImage(ph("b3", "07", "B", "16:9", "Illustration"), "Geometric Study", w7),
   withImage(ph("c1", "08", "C", "9:16", "Flyer Design"), "University of Forestry Flyer", w8),
   withImage(ph("c2", "09", "C", "16:9", "Brand Identity"), "Aleksandar Tonev Identity", w9),
