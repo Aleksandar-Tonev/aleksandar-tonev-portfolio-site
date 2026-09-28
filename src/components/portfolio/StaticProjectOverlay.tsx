@@ -98,18 +98,18 @@ export function StaticProjectOverlay({
           {/* Desktop only: category at image top, previous link above the image midpoint */}
           <div className="relative hidden lg:flex lg:flex-col">
             <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{pc(project).category}</p>
-            {description[0] && (
-              <p className="mt-auto max-w-[36ch] pt-[calc(42%+1.5rem)] text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[0]}</p>
-            )}
             <button
               type="button"
               onClick={() => onNavigate(prev)}
-              className="group absolute left-0 top-[42%] max-w-full -translate-y-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className="group mt-[max(1.5rem,calc(32vh-4.5rem))] max-w-full self-start text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               aria-label={`${o.prevProjectAria}: ${pad(idx === 0 ? total : idx)} ${pc(prev).title}`}
             >
               <span className="block font-mono text-xs uppercase tracking-wider text-muted-foreground">{o.prevProject}</span>
               <span className="mt-1 block max-w-[22ch] text-sm group-hover:underline">{pad(idx === 0 ? total : idx)} — {pc(prev).title}</span>
             </button>
+            {description[0] && (
+              <p className="mt-auto max-w-[36ch] pt-8 text-left font-sans text-[14px] font-normal leading-[1.6] text-foreground text-pretty xl:text-[15px]">{description[0]}</p>
+            )}
           </div>
           <div
             className={`mx-auto ${portrait ? "" : "lg:!w-[min(62vw,calc(76vh*16/9))]"}`}
