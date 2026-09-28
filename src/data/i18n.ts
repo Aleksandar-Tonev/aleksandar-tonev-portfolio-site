@@ -5,7 +5,7 @@ import { descriptions } from "./descriptions";
 
 export type Lang = "en" | "bg";
 
-export interface ProjectCopy { title: string; category: string; alt: string; description?: string[] }
+export interface ProjectCopy { title: string; category: string; alt: string; description?: string[] | undefined }
 
 const en = {
   meta: {
@@ -143,19 +143,19 @@ const bg: Dict = {
   },
   home: { label: "Начало", aria: "Обратно към началото" },
   projects: {
-    a1: { title: "Плакат за фризьорски салон", category: "Дизайн на плакат", alt: "Плакат за фризьорски салон", description: descriptions.bg.a1 },
-    a2: { title: "Davines — 100% Vitality", category: "Външна реклама", alt: "Davines — 100% Vitality, външна реклама", description: descriptions.bg.a2 },
-    a3: { title: "Книга на Ботьо Буков", category: "Дизайн на корица", alt: "Корица на книга на Ботьо Буков", description: descriptions.bg.a3 },
-    a4: { title: "Календар Aspen Invest", category: "Дизайн на календарна глава", alt: "Календар Aspen Invest", description: descriptions.bg.a4 },
-    b1: { title: "Календар на Сметната палата", category: "Институционален дизайн", alt: "Календар на Сметната палата на Република България", description: descriptions.bg.b1 },
-    b2: { title: "Цветна геометрична задача", category: "Експериментален дизайн", alt: "Цветна геометрична задача", description: descriptions.bg.b2 },
-    b3: { title: "Геометричен етюд", category: "Илюстрация", alt: "Геометричен етюд", description: descriptions.bg.b3 },
-    c1: { title: "Флаер на Лесотехническия университет", category: "Дизайн на флаер", alt: "Флаер на Лесотехническия университет", description: descriptions.bg.c1 },
-    c2: { title: "Идентичност Александър Тонев", category: "Бранд идентичност", alt: "Визуална идентичност на Александър Тонев", description: descriptions.bg.c2 },
-    c3: { title: "Визитка на козметичен салон", category: "Бранд материали", alt: "Визитка на козметичен салон", description: descriptions.bg.c3 },
-    d1: { title: "Моушън етюд", category: "Моушън дизайн", alt: "Моушън етюд", description: descriptions.bg.d1 },
-    d2: { title: "Архитектурен филм", category: "AI видео / Архитектура", alt: "Архитектурен филм", description: descriptions.bg.d2 },
-    d3: { title: "Cosmic", category: "AI видео / Експериментално", alt: "Cosmic", description: descriptions.bg.d3 },
+    a1: { title: "Плакат за фризьорски салон", category: "Дизайн на плакат", alt: "Плакат за фризьорски салон", description: descriptions.bg["a1"] },
+    a2: { title: "Davines — 100% Vitality", category: "Външна реклама", alt: "Davines — 100% Vitality, външна реклама", description: descriptions.bg["a2"] },
+    a3: { title: "Книга на Ботьо Буков", category: "Дизайн на корица", alt: "Корица на книга на Ботьо Буков", description: descriptions.bg["a3"] },
+    a4: { title: "Календар Aspen Invest", category: "Дизайн на календарна глава", alt: "Календар Aspen Invest", description: descriptions.bg["a4"] },
+    b1: { title: "Календар на Сметната палата", category: "Институционален дизайн", alt: "Календар на Сметната палата на Република България", description: descriptions.bg["b1"] },
+    b2: { title: "Цветна геометрична задача", category: "Експериментален дизайн", alt: "Цветна геометрична задача", description: descriptions.bg["b2"] },
+    b3: { title: "Геометричен етюд", category: "Илюстрация", alt: "Геометричен етюд", description: descriptions.bg["b3"] },
+    c1: { title: "Флаер на Лесотехническия университет", category: "Дизайн на флаер", alt: "Флаер на Лесотехническия университет", description: descriptions.bg["c1"] },
+    c2: { title: "Идентичност Александър Тонев", category: "Бранд идентичност", alt: "Визуална идентичност на Александър Тонев", description: descriptions.bg["c2"] },
+    c3: { title: "Визитка на козметичен салон", category: "Бранд материали", alt: "Визитка на козметичен салон", description: descriptions.bg["c3"] },
+    d1: { title: "Моушън етюд", category: "Моушън дизайн", alt: "Моушън етюд", description: descriptions.bg["d1"] },
+    d2: { title: "Архитектурен филм", category: "AI видео / Архитектура", alt: "Архитектурен филм", description: descriptions.bg["d2"] },
+    d3: { title: "Cosmic", category: "AI видео / Експериментално", alt: "Cosmic", description: descriptions.bg["d3"] },
   },
 };
 
