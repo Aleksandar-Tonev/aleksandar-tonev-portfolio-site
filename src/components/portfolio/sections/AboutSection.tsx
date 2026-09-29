@@ -1,5 +1,6 @@
 import { useI18n } from "@/lib/i18n";
 import { AboutPortrait } from "@/components/portfolio/AboutPortrait";
+import { AboutVideo } from "@/components/portfolio/AboutVideo";
 import { SectionNumber } from "@/components/portfolio/SectionHeading";
 
 
@@ -13,7 +14,7 @@ export function AboutSection() {
         <h2 className="mt-4 font-display text-4xl uppercase md:text-6xl">{t.about.heading}</h2>
       </div>
       <div className="enter-2 col-span-12 md:col-span-4">
-        <AboutPortrait />
+        <div className="relative"><AboutPortrait /><AboutVideo /></div>
       </div>
       <div className="enter-2 col-span-12 space-y-5 text-base leading-relaxed md:col-span-4">
         {t.about.paragraphs.map((p) => <p key={p}>{p}</p>)}

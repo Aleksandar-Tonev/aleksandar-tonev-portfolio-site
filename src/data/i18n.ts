@@ -49,6 +49,9 @@ const en = {
     showColor: "Show full-colour portrait",
     full: "Full color",
     reveal: "Reveal",
+    video: "Meet me",
+    videoAria: "Play presentation video",
+    videoClose: "Close video",
   },
   resume: {
     label: resume.label,
@@ -124,6 +127,9 @@ const bg: Dict = {
     showColor: "Покажи цветния портрет",
     full: "В цвят",
     reveal: "Разкрий",
+    video: "Видео",
+    videoAria: "Пусни видео представяне",
+    videoClose: "Затвори видеото",
   },
   resume: {
     label: "Резюме / Опит",
