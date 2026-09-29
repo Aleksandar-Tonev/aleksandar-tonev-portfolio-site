@@ -463,3 +463,6 @@ html:lang(bg) h1, html:lang(bg) h2 { overflow-wrap: break-word; hyphens: auto; }
 
 html[lang="bg"] .bg-lh { line-height: 1.125; }
 html[lang="bg"] .bg-lh-hero { line-height: 1.0125; }
+.about-video-btn { background: rgb(20 20 18 / 0.6); color: #fff; backdrop-filter: blur(6px); transition: background-color 180ms ease; }
+.about-video-btn:hover, .about-video-btn:focus-visible { background: var(--color-accent, #D85B3F); outline: none; }
+.about-video-btn:focus-visible { box-shadow: 0 0 0 2px #fff; }
