@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -37,7 +38,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -86,18 +87,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Aleksandar Tonev" },
       { property: "og:url", content: "https://aleksandar-tonev.pages.dev/" },
-      { property: "og:title", content: "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content · Motion" },
-      { property: "og:description", content: "Portfolio of Aleksandar Tonev: Graphic designer with a prepress background. Developing in AI content, video and motion." },
-      { property: "og:image", content: "https://aleksandar-tonev.pages.dev/og-image-v2.png" },
-      { property: "og:image:secure_url", content: "https://aleksandar-tonev.pages.dev/og-image-v2.png" },
+      { property: "og:title", content: "Aleksandar Tonev" },
+      { property: "og:image", content: "https://aleksandar-tonev.pages.dev/og-image.png" },
+      { property: "og:image:secure_url", content: "https://aleksandar-tonev.pages.dev/og-image.png" },
       { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Aleksandar Tonev — Graphic Design Portfolio" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Content · Motion" },
-      { name: "twitter:description", content: "Portfolio of Aleksandar Tonev: Graphic designer with a prepress background. Developing in AI content, video and motion." },
-      { name: "twitter:image", content: "https://aleksandar-tonev.pages.dev/og-image-v2.png" },
+      { name: "twitter:title", content: "Aleksandar Tonev" },
+      { name: "twitter:image", content: "https://aleksandar-tonev.pages.dev/og-image.png" },
       { name: "twitter:image:alt", content: "Aleksandar Tonev — Graphic Design Portfolio" },
     ],
     links: [
