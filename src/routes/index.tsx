@@ -5,7 +5,7 @@ const TITLE = "Aleksandar Tonev — Graphic Design · Prepress · AI Visual Cont
 const DESC = "Portfolio of Aleksandar Tonev: Graphic designer with a prepress background. Developing in AI content, video and motion.";
 /** Production domain (no trailing slash). Social image/URL tags are emitted only when set. */
 const SITE_URL = "https://aleksandar-tonev.pages.dev";
-const OG_IMAGE = `${SITE_URL}/og-image-v2.png`;
+const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,8 +13,7 @@ export const Route = createFileRoute("/")({
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESC },
+      { property: "og:title", content: "Aleksandar Tonev" },
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:secure_url", content: OG_IMAGE },
@@ -23,8 +22,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Aleksandar Tonev — Graphic Design Portfolio" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: TITLE },
-      { name: "twitter:description", content: DESC },
+      { name: "twitter:title", content: "Aleksandar Tonev" },
       { name: "twitter:image", content: OG_IMAGE },
       { name: "twitter:image:alt", content: "Aleksandar Tonev — Graphic Design Portfolio" },
     ],
