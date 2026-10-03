@@ -113,10 +113,11 @@ export const projects: Project[] = [
   withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Cosmetics Business Card", w10),
   { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11), video: v11, duration: "00:28" },
   { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12), video: v12.url, fill: true, duration: "01:27" },
+  { ...ph("stop-motion-study", "13", "D", "16:9", "Motion Design"), title: "Stop Motion Study", alt: "Stop Motion Study", video: "/videos/stop-motion-16-9.mp4" },
   { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13), video: v13.url, duration: "01:08" },
 ];
 
-export const PROJECT_TOTAL = 13;
+export const PROJECT_TOTAL = 14;
 if (import.meta.env.DEV && projects.length !== PROJECT_TOTAL) {
   console.error(`Portfolio data: expected ${PROJECT_TOTAL} projects, found ${projects.length}.`);
 }

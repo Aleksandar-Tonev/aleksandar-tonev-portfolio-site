@@ -47,6 +47,9 @@ export const descriptions: Record<"en" | "bg", Record<string, string[]>> = {
     "d2": [
       "Created entirely with AI, this film is a visual tribute to two major figures of modernist architecture—Mies van der Rohe and Frank Lloyd Wright, associated with the principles of “Less is more” and organic architecture. The project uses image-to-video generation while pursuing recognizable likenesses and factual accuracy in its portrayal of the architects and their buildings. I developed the screenplay from my own concept, introducing subtle elements of magic and mystery."
     ],
+    "stop-motion-study": [
+      "A stop-motion study about the human need to create in order to discover what lies within. Through creation, we move beyond our own limits and reach toward something larger than ourselves."
+    ],
     "d3": [
       "This personal project is an ironic nod to one of my favorite pastimes—cooking in my spare time. It is one of those dream jobs that will never happen unless I find my way aboard a spacecraft. Beyond its eccentric premise, the video also features a playful narrative twist that brings the short story to a satisfying close."
     ]
@@ -97,6 +100,9 @@ export const descriptions: Record<"en" | "bg", Record<string, string[]>> = {
     ],
     "d2": [
       "Този филм е създаден изцяло с помощта на AI и е визуален трибют към двама от големите архитекти на модернизма — Мис ван дер Рое и Франк Лойд Райт, свързани с принципите на „Less is more“ и органичната архитектура. Проектът използва image-to-video генериране, като търси разпознаваемост и фактическа точност при представянето на архитектите и техните сгради. Сценарият е разработен по моя концепция и включва деликатни елементи на магичност и мистерия."
+    ],
+    "stop-motion-study": [
+      "Стоп моушън етюд за потребността на човека да твори, за да открие какво носи в себе си. Чрез творчеството надхвърляме собствените си граници и се докосваме до нещо по-голямо от самите нас."
     ],
     "d3": [
       "Този личен проект е иронично намигване към едно от любимите ми занимания — готвенето в свободното време. Това е една от мечтаните професии, които няма да се случат, освен ако не се кача на космически кораб. Освен ексцентричния сюжет, видеото разчита и на закачлив сценарен обрат, който придава завършеност на кратката история."
