@@ -161,6 +161,7 @@ const bg: Dict = {
     c3: { title: "Визитка на козметичен салон", category: "Бранд материали", alt: "Визитка на козметичен салон", description: descriptions.bg["c3"] },
     d1: { title: "Моушън етюд", category: "Моушън дизайн", alt: "Моушън етюд", description: descriptions.bg["d1"] },
     d2: { title: "Архитектурен филм", category: "AI видео / Архитектура", alt: "Архитектурен филм", description: descriptions.bg["d2"] },
+    "stop-motion-study": { title: "Стоп моушън етюд", category: "AI видео / Експериментално", alt: "Стоп моушън етюд", description: descriptions.bg["stop-motion-study"] },
     d3: { title: "Cosmic", category: "AI видео / Експериментално", alt: "Cosmic", description: descriptions.bg["d3"] },
   },
 };
