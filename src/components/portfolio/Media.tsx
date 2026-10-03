@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ratioValue, type Project } from "@/data/projects";
 import { useI18n, useProjectCopy } from "@/lib/i18n";
 
@@ -32,6 +33,27 @@ export function Media({
   const widthLimited = pr >= fw / fh;
   const img = project.images[0];
   const cssRatio = project.aspectRatio.replace(":", " / ");
+  const [stopMotionDuration, setStopMotionDuration] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!videoThumb || project.id !== "stop-motion-study" || !project.video) return;
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    const onMetadata = () => {
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+      const seconds = Math.round(video.duration);
+      setStopMotionDuration(`${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`);
+    };
+    video.addEventListener("loadedmetadata", onMetadata);
+    video.src = project.video;
+    return () => {
+      video.removeEventListener("loadedmetadata", onMetadata);
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, [videoThumb, project.id, project.video]);
+
+  const duration = project.id === "stop-motion-study" ? stopMotionDuration : project.duration;
 
   return (
     <div className="relative flex w-full items-start" style={{ aspectRatio: ratio.replace("/", " / ") }}>
@@ -79,7 +101,7 @@ export function Media({
             <span className="vthumb-play" role="img" aria-label={t.work.playVideo}>
               <svg viewBox="0 0 24 24" aria-hidden width="20" height="20"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
             </span>
-            {project.duration && <span className="vthumb-dur">{project.duration}</span>}
+            {duration && <span className="vthumb-dur">{duration}</span>}
           </>
         )}
       </div>
