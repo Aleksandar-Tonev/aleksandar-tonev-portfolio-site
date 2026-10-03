@@ -24,6 +24,7 @@ import w10 from "@/assets/work-media/work-10.webp";
 import w11 from "@/assets/work-media/work-11.webp";
 import w12 from "@/assets/work-media/work-12.webp";
 import w13 from "@/assets/work-media/work-13.webp";
+import w14 from "@/assets/work-media/work-14.webp";
 import v11 from "@/assets/work-media/work-11.mp4";
 const v12 = { url: "/videos/12-architectural-film-16-9-web.mp4" };
 const v13 = { url: "/videos/13-Cosmic-clip-9-16-web.mp4" };
@@ -113,7 +114,7 @@ export const projects: Project[] = [
   withImage(ph("c3", "10", "C", "9:16", "Brand Collateral"), "Cosmetics Business Card", w10),
   { ...withImage(ph("d1", "11", "D", "16:9", "Motion Design"), "Motion Study", w11), video: v11, duration: "00:28" },
   { ...withImage(ph("d2", "12", "D", "16:9", "AI Video / Architecture"), "Architectural Film", w12), video: v12.url, fill: true, duration: "01:27" },
-  { ...ph("stop-motion-study", "13", "D", "16:9", "Motion Design"), title: "Stop Motion Study", alt: "Stop Motion Study", video: "/videos/stop-motion-16-9.mp4" },
+  { ...withImage(ph("stop-motion-study", "13", "D", "16:9", "AI Video / Experimental"), "Stop Motion Study", w14), video: "/videos/stop-motion-16-9.mp4" },
   { ...withImage(ph("d3", "13", "D", "9:16", "AI Video / Experimental"), "Cosmic", w13), video: v13.url, duration: "01:08" },
 ];
 
